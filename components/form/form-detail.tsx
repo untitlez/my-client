@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { NotepadText } from "lucide-react";
 
-import { FormType } from "@/app/page";
+import { FormType } from "@/validators/form.validator";
+
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";

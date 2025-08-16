@@ -1,34 +1,29 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { toast } from "sonner";
 
-import { Config } from "@/lib/config";
+import { Config } from "@/libs/config";
+import { FormSchema, FormType } from "@/validators/form.validator";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 import { FormSelect } from "@/components/form/form-select";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { FormText } from "@/components/form/form-text";
 import { FormSubmit } from "@/components/form/form-submit";
 import { FormDetail } from "@/components/form/form-detail";
 import { Form } from "@/components/ui/form";
-import { ThemeToggle } from "@/components/theme-toggle";
-
-export interface FormType {
-  classLevel: string;
-  subject: string;
-  unitName: string;
-  objectives: string;
-  activities: string;
-  assessment: string;
-}
 
 export default function Home() {
   const [image, setImage] = useState();
   const [formDetail, setFormDetail] = useState<FormType | null>(null);
 
-  const form = useForm({
+  const form = useForm<FormType>({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       classLevel: "",
       subject: "",
@@ -125,7 +120,15 @@ export default function Home() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         {image && (
-          <img src={image} alt="Lesson" className="object-cover h-full" />
+          <div className="relative h-full w-full overflow-hidden">
+            <Image
+              src={image}
+              alt="Lesson"
+              className="object-cover"
+              sizes="100vw"
+              fill
+            />
+          </div>
         )}
       </div>
     </div>

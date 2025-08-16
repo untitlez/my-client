@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Loader2, RefreshCcw } from "lucide-react";
 
+import { FormType } from "@/validators/form.validator";
+
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -19,6 +21,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 const classLevelItems = [
   { value: "primaryEd_1", label: "ป.1" },
@@ -36,16 +39,16 @@ const classLevelItems = [
 ];
 
 interface FormSubmitProps {
-  onSubmit: (formData: any) => Promise<void>;
+  onSubmit: (formData: FormType) => Promise<void>;
   fetchData: (values: string) => Promise<void>;
   image: undefined;
 }
 
 export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
   const [open, setOpen] = useState(false);
-  const { handleSubmit, formState, watch } = useFormContext();
+  const { handleSubmit, formState, watch } = useFormContext<FormType>();
 
-  const handleConfirm = (data: any) => {
+  const handleConfirm = (data: FormType) => {
     onSubmit(data);
     setOpen(false);
   };
@@ -110,16 +113,18 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <Button
-            variant="outline"
-            className="btn sm:mr-auto"
-            onClick={() => fetchData(allValue.unitName)}
-          >
-            <span>
-              <RefreshCcw className="size-4" />
-            </span>
-            <span className="sm:hidden">เปลี่ยนรูปภาพ</span>
-          </Button>
+          {allValue.unitName && (
+            <Button
+              variant="outline"
+              className="btn sm:mr-auto"
+              onClick={() => fetchData(allValue.unitName)}
+            >
+              <span>
+                <RefreshCcw className="size-4" />
+              </span>
+              <span className="sm:hidden">เปลี่ยนรูปภาพ</span>
+            </Button>
+          )}
           <AlertDialogCancel className="btn">ยกเลิก</AlertDialogCancel>
           <AlertDialogAction asChild className="btn">
             {formState.isSubmitting ? (
@@ -128,7 +133,12 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
                 บันทึก
               </Button>
             ) : (
-              <Button type="submit" onClick={handleSubmit(handleConfirm)}>
+              <Button
+                type="submit"
+                onClick={handleSubmit(handleConfirm, () =>
+                  toast.error("กรุณากรอกข้อมูลให้ครบถ้วน"),
+                )}
+              >
                 บันทึก
               </Button>
             )}

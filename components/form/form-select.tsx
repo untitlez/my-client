@@ -53,7 +53,11 @@ export const FormSelect = () => {
       name={inputItems.name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{inputItems.label}</FormLabel>
+          <FormLabel>
+            {inputItems.label}
+            <span className="text-red-400">*</span>
+          </FormLabel>
+
           <FormControl>
             <Select onValueChange={field.onChange} value={field.value}>
               <SelectTrigger className="w-full">

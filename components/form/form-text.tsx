@@ -41,7 +41,10 @@ export const FormText = ({ fetchData }: FormTextProps) => {
           name={item.name}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{item.label}</FormLabel>
+              <FormLabel>
+                {item.label}
+                <span className="text-red-400">*</span>
+              </FormLabel>
               <FormControl>
                 {item.name === "unitName" ? (
                   <Input
