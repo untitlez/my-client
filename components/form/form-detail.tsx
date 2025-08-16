@@ -58,7 +58,7 @@ export const FormDetail = ({
     { label: "กิจกรรม", placeholder: formDetail.activities },
     { label: "วิธีประเมิน", placeholder: formDetail.assessment },
   ];
-  console.log("formDetail", formDetail);
+  
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>

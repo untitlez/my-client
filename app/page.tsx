@@ -45,18 +45,9 @@ export default function Home() {
   };
 
   const exportPDF = async () => {
+    toast.info("กำลังอยู่ในช่วงทดลอง")
     // try {
     //   const response = await axios.get(Config.API_URL + "/api/exports", {
-    //     responseType: "blob",
-    //   });
-    //   const url = window.URL.createObjectURL(response.data);
-    //   const a = document.createElement("a");
-    //   a.href = url;
-    //   a.download = "lesson.pdf";
-    //   document.body.appendChild(a);
-    //   a.click();
-    //   a.remove();
-    //   window.URL.revokeObjectURL(url);
     // } catch (error) {
     //   console.error("Export PDF failed:", error);
     // }
