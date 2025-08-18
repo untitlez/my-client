@@ -4,22 +4,25 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import axios from "axios";
 
-import { Config } from "@/libs/config";
+import { Config } from "@/lib/config";
 import { FormSchema, FormType } from "@/validators/form.validator";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { FormSelect } from "@/components/form/form-select";
-import { FormTextarea } from "@/components/form/form-textarea";
+import { FormSearchSelect } from "@/components/form/form-search-select";
 import { FormText } from "@/components/form/form-text";
+import { FormTextarea } from "@/components/form/form-textarea";
 import { FormSubmit } from "@/components/form/form-submit";
 import { FormDetail } from "@/components/form/form-detail";
 import { Form } from "@/components/ui/form";
 
 export default function Home() {
   const [image, setImage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [formDetail, setFormDetail] = useState<FormType | null>(null);
 
   const form = useForm<FormType>({
@@ -45,7 +48,7 @@ export default function Home() {
   };
 
   const exportPDF = async () => {
-    toast.info("กำลังอยู่ในช่วงทดลอง")
+    toast.info("กำลังอยู่ในช่วงทดลอง");
     // try {
     //   const response = await axios.get(Config.API_URL + "/api/exports", {
     // } catch (error) {
@@ -55,10 +58,12 @@ export default function Home() {
 
   const fetchData = async (unitName: string) => {
     try {
+      setIsLoading(true);
       const { data } = await axios.get(Config.API_URL + "/api/images", {
         params: { query: unitName },
       });
       setImage(data);
+      setIsLoading(false);
     } catch (error: unknown) {
       console.log("error", error);
     }
@@ -73,9 +78,13 @@ export default function Home() {
       <div className="flex flex-col gap-8 p-6 md:p-10">
         {/* Header  */}
         <div className="flex justify-between">
-          <div className="flex flex-col justify-center gap-1 md:justify-start">
-            <h1 className="text-xl font-semibold">Create A Lesson Plan</h1>
-            <h2 className="text-md text-muted-foreground">สร้างแผนการสอน</h2>
+          <div className="flex flex-col justify-center gap- md:justify-start">
+            <h1 className="text-xl sm:text-2xl font-semibold">
+              สร้างแผนการสอน
+            </h1>
+            <h2 className="text-md sm:text-lg text-muted-foreground">
+              Create A Lesson Plan
+            </h2>
           </div>
           <ThemeToggle />
         </div>
@@ -86,10 +95,14 @@ export default function Home() {
             <FormProvider {...form}>
               <Form {...form}>
                 <form className="space-y-6">
+                  {/* Input  */}
                   <FormSelect />
+                  <FormSearchSelect />
                   <FormText fetchData={fetchData} />
                   <FormTextarea />
-                  <div className="col-span-1 flex items-center justify-between gap-4 my-12">
+
+                  {/* Button  */}
+                  <div className="flex items-center justify-between gap-4 my-12">
                     {formDetail && !form.formState.isDirty && (
                       <FormDetail
                         formDetail={formDetail}
@@ -101,6 +114,7 @@ export default function Home() {
                       onSubmit={onSubmit}
                       fetchData={fetchData}
                       image={image}
+                      isLoading={isLoading}
                     />
                   </div>
                 </form>
@@ -109,8 +123,10 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Images  */}
       <div className="bg-muted relative hidden lg:block">
-        {image && (
+        {image ? (
           <div className="relative h-full w-full overflow-hidden">
             <Image
               src={image}
@@ -119,6 +135,11 @@ export default function Home() {
               sizes="100vw"
               fill
             />
+          </div>
+        ) : (
+          <div className="h-full w-full overflow-hidden flex items-center justify-center gap-2">
+            <Loader2 className="size-4 animate-spin" />
+            Loading...
           </div>
         )}
       </div>

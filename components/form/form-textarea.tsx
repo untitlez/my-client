@@ -15,20 +15,20 @@ const inputItems = [
   {
     name: "objectives",
     type: "textarea",
-    label: "Objectives",
-    placeholder: "จุดประสงค์",
+    label: "จุดประสงค์",
+    placeholder: "จุดประสงค์การเรียนรู้",
   },
   {
     name: "activities",
     type: "textarea",
-    label: "Activities",
-    placeholder: "กิจกรรม",
+    label: "กิจกรรม",
+    placeholder: "กิจกรรมการเรียนรู้",
   },
   {
     name: "assessment",
     type: "textarea",
-    label: "Assessment",
-    placeholder: "วิธีการประเมิน",
+    label: "วัดผล และประเมิน",
+    placeholder: "วิธีการวัดและประเมินผล",
   },
 ];
 

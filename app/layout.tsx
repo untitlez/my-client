@@ -11,7 +11,7 @@ const inter = Inter({
 
 const kanit = Kanit({
   subsets: ["thai"],
-  weight: ["300"],
+  weight: ["300","400"],
 });
 
 export const metadata: Metadata = {

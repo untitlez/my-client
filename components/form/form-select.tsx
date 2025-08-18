@@ -22,8 +22,8 @@ import {
 const inputItems = {
   name: "classLevel",
   type: "select",
-  label: "Class Level",
-  placeholder: "ระดับชั้น",
+  label: "ระดับชั้น",
+  placeholder: "เลือกระดับชั้น (ป.1 - ม.6)",
   options: {
     primaryEducation: [
       { value: "primaryEd_1", label: "ป.1" },

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Loader2, RefreshCcw } from "lucide-react";
+import { toast } from "sonner";
 
 import { FormType } from "@/validators/form.validator";
 
@@ -21,7 +22,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { toast } from "sonner";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const classLevelItems = [
   { value: "primaryEd_1", label: "ป.1" },
@@ -41,10 +46,16 @@ const classLevelItems = [
 interface FormSubmitProps {
   onSubmit: (formData: FormType) => Promise<void>;
   fetchData: (values: string) => Promise<void>;
-  image: undefined;
+  image: string | undefined;
+  isLoading: boolean;
 }
 
-export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
+export const FormSubmit = ({
+  onSubmit,
+  fetchData,
+  image,
+  isLoading,
+}: FormSubmitProps) => {
   const [open, setOpen] = useState(false);
   const { handleSubmit, formState, watch } = useFormContext<FormType>();
 
@@ -55,7 +66,7 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
 
   const allValue = watch();
   const classLevelValue = classLevelItems.find(
-    (item) => item.value === allValue.classLevel,
+    (item) => item.value === allValue.classLevel
   );
 
   const items = [
@@ -69,6 +80,7 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
+      {/* Submit Button  */}
       <AlertDialogTrigger asChild>
         <Button
           disabled={!formState.isDirty}
@@ -85,17 +97,23 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
           </AlertDialogTitle>
           <AlertDialogDescription asChild>
             <div className="flex flex-col gap-3 my-4">
-              {allValue.unitName && (
-                <div className="relative aspect-video overflow-hidden mb-3 sm:mb-6 shadow-md">
-                  <Image
-                    src={image ?? ""}
-                    alt="images"
-                    className="rounded-xl object-cover"
-                    sizes="50vw"
-                    fill
-                  />
-                </div>
-              )}
+              {allValue.unitName &&
+                (isLoading ? (
+                  <div className="aspect-video bg-muted rounded-xl flex items-center justify-center mb-3 sm:mb-6 gap-2">
+                    <Loader2 className="size-4 animate-spin" />
+                    กำลังค้นหารูปภาพ
+                  </div>
+                ) : (
+                  <div className="relative aspect-video overflow-hidden bg-muted rounded-xl mb-3 sm:mb-6 shadow-md">
+                    <Image
+                      src={image ?? ""}
+                      alt="images"
+                      className="rounded-xl object-cover"
+                      sizes="50vw"
+                      fill
+                    />
+                  </div>
+                ))}
               {items.map((item, i) => (
                 <div
                   key={i}
@@ -113,19 +131,29 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
+          {/* Random Button  */}
           {allValue.unitName && (
-            <Button
-              variant="outline"
-              className="btn sm:mr-auto"
-              onClick={() => fetchData(allValue.unitName)}
-            >
-              <span>
-                <RefreshCcw className="size-4" />
-              </span>
-              <span className="sm:hidden">เปลี่ยนรูปภาพ</span>
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="btn sm:mr-auto"
+                  onClick={() => fetchData(allValue.unitName)}
+                >
+                  <span>
+                    <RefreshCcw className="size-4" />
+                  </span>
+                  <span className="sm:hidden">เปลี่ยนรูปภาพ</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>เปลี่ยนรูปภาพ</p>
+              </TooltipContent>
+            </Tooltip>
           )}
+          {/* Cancel Button  */}
           <AlertDialogCancel className="btn">ยกเลิก</AlertDialogCancel>
+          {/* Confirm Button  */}
           <AlertDialogAction asChild className="btn">
             {formState.isSubmitting ? (
               <Button type="button" disabled>
@@ -136,7 +164,7 @@ export const FormSubmit = ({ onSubmit, fetchData, image }: FormSubmitProps) => {
               <Button
                 type="submit"
                 onClick={handleSubmit(handleConfirm, () =>
-                  toast.error("กรุณากรอกข้อมูลให้ครบถ้วน"),
+                  toast.error("กรุณากรอกข้อมูลให้ครบถ้วน")
                 )}
               >
                 บันทึก
