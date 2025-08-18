@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import ReactPDF from "@react-pdf/renderer";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,6 +20,7 @@ import { FormTextarea } from "@/components/form/form-textarea";
 import { FormSubmit } from "@/components/form/form-submit";
 import { FormDetail } from "@/components/form/form-detail";
 import { Form } from "@/components/ui/form";
+import { DocumentPdf } from "@/components/document/document-pdf";
 
 export default function Home() {
   const [image, setImage] = useState();
@@ -47,13 +49,8 @@ export default function Home() {
     }
   };
 
-  const exportPDF = async () => {
-    toast.info("กำลังอยู่ในช่วงทดลอง");
-    // try {
-    //   const response = await axios.get(Config.API_URL + "/api/exports", {
-    // } catch (error) {
-    //   console.error("Export PDF failed:", error);
-    // }
+  const exportPDF = () => {
+    ReactPDF.render(<DocumentPdf />, `${__dirname}/แผนการสอน.pdf`);
   };
 
   const fetchData = async (unitName: string) => {

@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { NotepadText } from "lucide-react";
 
+import { Routes } from "@/lib/routes";
 import { FormType } from "@/validators/form.validator";
 
 import { Button } from "../ui/button";
@@ -44,7 +46,7 @@ const classLevelItems = [
 interface FormDetailProps {
   formDetail: FormType;
   image: string | undefined;
-  exportPDF: () => Promise<void>;
+  exportPDF: () => void;
 }
 
 export const FormDetail = ({
@@ -106,8 +108,10 @@ export const FormDetail = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel className="btn sm:mr-auto">ปิด</AlertDialogCancel>
-          <AlertDialogAction className="btn" onClick={exportPDF}>
-            บันทึกไฟล์ PDF
+          <AlertDialogAction asChild className="btn">
+            <Link href={Routes.pages.document} target="_blank">
+              บันทึกไฟล์ PDF
+            </Link>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
