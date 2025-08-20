@@ -1,13 +1,15 @@
 import { fetchLessonPlan } from "@/lib/fetch-lesson-plan";
+import { FormType } from "@/validators/form.validator";
 
 import { ContentTable } from "@/components/office/content/content-table";
 
-export default async function OfficePage() {
+export default async function UnitNamePage() {
   const data = await fetchLessonPlan();
+  const findUnitName = data.filter((item: FormType) => item.unitName);
 
   return (
     <div className="flex flex-col items-center">
-      <ContentTable data={data} />
+      <ContentTable data={findUnitName} />
     </div>
   );
 }

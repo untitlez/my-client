@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { NotepadText } from "lucide-react";
+import { ClipboardCheck } from "lucide-react";
 
-import { Routes } from "@/lib/routes";
+import { routes } from "@/lib/routes";
 import { FormType } from "@/validators/form.validator";
 
 import { Button } from "../ui/button";
@@ -46,14 +46,9 @@ const classLevelItems = [
 interface FormDetailProps {
   formDetail: FormType;
   image: string | undefined;
-  exportPDF: () => void;
 }
 
-export const FormDetail = ({
-  formDetail,
-  image,
-  exportPDF,
-}: FormDetailProps) => {
+export const FormDetail = ({ formDetail, image }: FormDetailProps) => {
   const classLevelValue = classLevelItems.find(
     (item) => item.value === formDetail.classLevel
   );
@@ -71,7 +66,7 @@ export const FormDetail = ({
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="outline" className="btn">
-          <NotepadText className="size-4" />
+          <ClipboardCheck className="size-4" />
           เอกสาร
         </Button>
       </AlertDialogTrigger>
@@ -109,7 +104,7 @@ export const FormDetail = ({
         <AlertDialogFooter>
           <AlertDialogCancel className="btn sm:mr-auto">ปิด</AlertDialogCancel>
           <AlertDialogAction asChild className="btn">
-            <Link href={Routes.pages.document} target="_blank">
+            <Link href={routes.pages.document} target="_blank">
               บันทึกไฟล์ PDF
             </Link>
           </AlertDialogAction>

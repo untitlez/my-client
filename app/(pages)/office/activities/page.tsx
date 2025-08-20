@@ -1,13 +1,15 @@
 import { fetchLessonPlan } from "@/lib/fetch-lesson-plan";
+import { FormType } from "@/validators/form.validator";
 
 import { ContentTable } from "@/components/office/content/content-table";
 
-export default async function OfficePage() {
+export default async function ActivitiesPage() {
   const data = await fetchLessonPlan();
+  const findActivities = data.filter((item: FormType) => item.activities);
 
   return (
     <div className="flex flex-col items-center">
-      <ContentTable data={data} />
+      <ContentTable data={findActivities} />
     </div>
   );
 }

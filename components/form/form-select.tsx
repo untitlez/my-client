@@ -33,7 +33,6 @@ const inputItems = {
       { value: "primaryEd_5", label: "ป.5" },
       { value: "primaryEd_6", label: "ป.6" },
     ],
-
     secondaryEducation: [
       { value: "secondaryEd_1", label: "ม.1" },
       { value: "secondaryEd_2", label: "ม.2" },

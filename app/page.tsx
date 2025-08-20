@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import ReactPDF from "@react-pdf/renderer";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,6 +9,7 @@ import { toast } from "sonner";
 import axios from "axios";
 
 import { Config } from "@/lib/config";
+import { routes } from "@/lib/routes";
 import { FormSchema, FormType } from "@/validators/form.validator";
 
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -20,7 +20,6 @@ import { FormTextarea } from "@/components/form/form-textarea";
 import { FormSubmit } from "@/components/form/form-submit";
 import { FormDetail } from "@/components/form/form-detail";
 import { Form } from "@/components/ui/form";
-import { DocumentPdf } from "@/components/document/document-pdf";
 
 export default function Home() {
   const [image, setImage] = useState();
@@ -33,33 +32,33 @@ export default function Home() {
       classLevel: "",
       subject: "",
       unitName: "",
-      objectives: "",
-      activities: "",
-      assessment: "",
+      image: image,
     },
   });
 
   const onSubmit = async (formData: FormType) => {
     try {
-      setFormDetail(formData);
+      const { data } = await axios.post(
+        Config.API_URL + routes.api.lessonPlan,
+        formData
+      );
+      setFormDetail(data)
       form.reset();
+      console.log("data", data);
       toast.success("บันทึกแผนการสอนสำเร็จ !");
     } catch (error) {
       console.log("error", error);
     }
   };
 
-  const exportPDF = () => {
-    ReactPDF.render(<DocumentPdf />, `${__dirname}/แผนการสอน.pdf`);
-  };
-
   const fetchData = async (unitName: string) => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(Config.API_URL + "/api/images", {
+      const { data } = await axios.get(Config.API_URL + routes.api.images, {
         params: { query: unitName },
       });
       setImage(data);
+      form.setValue("image", data);
       setIsLoading(false);
     } catch (error: unknown) {
       console.log("error", error);
@@ -101,11 +100,7 @@ export default function Home() {
                   {/* Button  */}
                   <div className="flex items-center justify-between gap-4 my-12">
                     {formDetail && !form.formState.isDirty && (
-                      <FormDetail
-                        formDetail={formDetail}
-                        image={image}
-                        exportPDF={exportPDF}
-                      />
+                      <FormDetail formDetail={formDetail} image={image} />
                     )}
                     <FormSubmit
                       onSubmit={onSubmit}

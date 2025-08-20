@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { Plus } from "lucide-react";
 
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 import {
   FormControl,
   FormField,
@@ -11,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const inputItems = [
+const inputItems2 = [
   {
     name: "objectives",
     type: "textarea",
@@ -34,24 +37,40 @@ const inputItems = [
 
 export const FormTextarea = () => {
   const { control } = useFormContext();
+  const [openInput, setOpenInput] = useState(false);
+
   return (
     <>
-      {inputItems.map((item, i) => (
-        <FormField
-          key={i}
-          control={control}
-          name={item.name}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{item.label}</FormLabel>
-              <FormControl>
-                <Textarea placeholder={item.placeholder} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      ))}
+      {!openInput ? (
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full cursor-pointer"
+          onClick={() => setOpenInput(true)}
+        >
+          <Plus className="size-4" />
+          เพิ่มจุดประสงค์ กิจกรรม และวัดผลการประเมิน
+        </Button>
+      ) : (
+        inputItems2.map((item, i) => (
+          <FormField
+            key={i}
+            control={control}
+            name={item.name}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="flex items-center">
+                  {item.label}
+                </FormLabel>
+                <FormControl>
+                  <Textarea placeholder={item.placeholder} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))
+      )}
     </>
   );
 };
