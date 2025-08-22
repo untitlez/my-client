@@ -90,7 +90,7 @@ export const ContentTable = ({ data }: ContentTableProps) => {
                       <p className="font-semibold">ดูข้อมูล</p>
                     </TooltipContent>
                   </Tooltip>
-                  <ContentDelete />
+                  <ContentDelete id={item._id}/>
                 </TableCell>
               </TableRow>
             ))

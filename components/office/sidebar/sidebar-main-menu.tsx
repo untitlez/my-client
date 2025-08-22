@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-import { AppSidebarItems } from "./app-sidebar";
+import { sidebarItems } from "@/lib/constant-sidebar";
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,11 +20,12 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
+
 export const SidebarMainMenu = () => {
   return (
     <SidebarGroup>
       <SidebarMenu>
-        {AppSidebarItems.mainMenu.map((item) => (
+        {sidebarItems.mainMenu.map((item) => (
           <Collapsible key={item.title} asChild defaultOpen>
             <SidebarMenuItem>
               <SidebarMenuButton

@@ -5,6 +5,7 @@ import { useFormContext } from "react-hook-form";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { fieldItems } from "@/lib/constant-form";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,23 +29,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-const inputItems = {
-  name: "subject",
-  type: "text",
-  label: "วิชา",
-  placeholder: "ค้นหา",
-  subjects: [
-    { value: "ภาษาไทย" },
-    { value: "คณิตศาสตร์" },
-    { value: "วิทยาศาสตร์และเทคโนโลยี" },
-    { value: "สังคมศึกษา ศาสนา และวัฒนธรรม" },
-    { value: "สุขศึกษาและพลศึกษา" },
-    { value: "ศิลปะ" },
-    { value: "การงานอาชีพและเทคโนโลยี" },
-    { value: "ภาษาต่างประเทศ" },
-  ],
-};
-
 export function FormSearchSelect() {
   const { control, setValue } = useFormContext();
   const [open, setOpen] = useState(false);
@@ -52,11 +36,11 @@ export function FormSearchSelect() {
   return (
     <FormField
       control={control}
-      name={inputItems.name}
+      name={fieldItems.subject.name}
       render={({ field }) => (
         <FormItem>
           <FormLabel>
-            {inputItems.label}
+            {fieldItems.subject.label}
             <span className="text-red-400">*</span>
           </FormLabel>
 
@@ -73,7 +57,7 @@ export function FormSearchSelect() {
                   )}
                 >
                   {field.value
-                    ? inputItems.subjects.find(
+                    ? fieldItems.subject.subjects.find(
                         (subject) => subject.value === field.value
                       )?.value
                     : "เลือกวิชาเรียน"}
@@ -84,13 +68,13 @@ export function FormSearchSelect() {
             <PopoverContent align="end" className="w-full sm:w-72 p-0">
               <Command>
                 <CommandInput
-                  placeholder={inputItems.placeholder}
+                  placeholder={fieldItems.subject.placeholder}
                   className="h-9"
                 />
                 <CommandList>
                   <CommandEmpty>ไม่พบวิชาเรียน</CommandEmpty>
                   <CommandGroup>
-                    {inputItems.subjects.map((subject) => (
+                    {fieldItems.subject.subjects.map((subject) => (
                       <CommandItem
                         className="capitalize"
                         key={subject.value}

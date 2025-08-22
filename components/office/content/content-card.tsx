@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { routes } from "@/lib/routes";
+import { fieldItems } from "@/lib/constant-form";
 import { FormType } from "@/validators/form.validator";
 
 import { Button } from "@/components/ui/button";
@@ -24,21 +25,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const classLevelItems = [
-  { value: "primaryEd_1", label: "ป.1" },
-  { value: "primaryEd_2", label: "ป.2" },
-  { value: "primaryEd_3", label: "ป.3" },
-  { value: "primaryEd_4", label: "ป.4" },
-  { value: "primaryEd_5", label: "ป.5" },
-  { value: "primaryEd_6", label: "ป.6" },
-  { value: "secondaryEd_1", label: "ม.1" },
-  { value: "secondaryEd_2", label: "ม.2" },
-  { value: "secondaryEd_3", label: "ม.3" },
-  { value: "secondaryEd_4", label: "ม.4" },
-  { value: "secondaryEd_5", label: "ม.5" },
-  { value: "secondaryEd_6", label: "ม.6" },
-];
-
 interface ContentCardProps {
   data: FormType;
 }
@@ -46,27 +32,25 @@ interface ContentCardProps {
 export const ContentCard = ({ data }: ContentCardProps) => {
   const router = useRouter();
   const onBack = () => router.back();
-  const classLevelValue = classLevelItems.find(
-    (item) => item.value === data.classLevel
-  );
 
   const items = [
-    { label: "ระดับชั้น", placeholder: classLevelValue?.label },
-    { label: "วิชาเรียน", placeholder: data.subject },
-    { label: "ชื่อหน่วย", placeholder: data.unitName },
-    { label: "จุดประสงค์", placeholder: data.objectives },
-    { label: "กิจกรรม", placeholder: data.activities },
-    { label: "วิธีประเมิน", placeholder: data.assessment },
+    { label: fieldItems.classLevel.label, placeholder: data.classLevel },
+    { label: fieldItems.subject.label, placeholder: data.subject },
+    { label: fieldItems.unitName.label, placeholder: data.unitName },
+    { label: fieldItems.objectives.label, placeholder: data.objectives },
+    { label: fieldItems.activities.label, placeholder: data.activities },
+    { label: fieldItems.assessment.label, placeholder: data.assessment },
   ];
+
   return (
     <Card className="w-full max-w-screen-sm">
       <CardHeader>
-        <CardTitle>รายละเอียดแผนการสอน :</CardTitle>
+        <CardTitle className="text-lg">รายละเอียดแผนการสอน :</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableCaption>
-            <div className="relative aspect-video overflow-hidden mb-3 sm:mb-6 shadow-md">
+            <div className="relative aspect-video overflow-hidden mb-3 sm:mb-6 border rounded-xl shadow-md bg-muted dark:bg-background">
               <Image
                 src={data.image ?? ""}
                 alt="images"
@@ -76,7 +60,7 @@ export const ContentCard = ({ data }: ContentCardProps) => {
               />
             </div>
           </TableCaption>
-          <TableBody>
+          <TableBody className="font-light">
             {items.map((item, i) => (
               <TableRow key={i}>
                 <TableHead className="w-1/4">{item.label} :</TableHead>

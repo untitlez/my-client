@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const FormSchema = z.object({
+  _id: z.string().optional(),
   classLevel: z.string().trim().min(1, { message: "กรุณาเลือกชั้นเรียน" }),
   subject: z
     .string()
@@ -18,14 +19,10 @@ export const FormSchema = z.object({
   image: z.string().trim().optional(),
 });
 
-export const ResponseFormSchema = z.array(
-  FormSchema.partial().extend({
-    _id: z.string,
-  })
-);
+export const UpdateFormSchema = FormSchema.partial();
 
 //
 // Type
 //
 export type FormType = z.infer<typeof FormSchema>;
-export type ResponseFormType = z.infer<typeof ResponseFormSchema>;
+export type UpdateFormType = z.infer<typeof UpdateFormSchema>;

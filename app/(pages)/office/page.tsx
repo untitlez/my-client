@@ -1,4 +1,4 @@
-import { fetchLessonPlan } from "@/lib/fetch-lesson-plan";
+import { fetchLessonPlan } from "@/lib/fetch";
 
 import { ContentTable } from "@/components/office/content/content-table";
 

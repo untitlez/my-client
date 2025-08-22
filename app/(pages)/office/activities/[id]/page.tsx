@@ -1,9 +1,9 @@
-import { fetchLessonPlanId } from "@/lib/fetch-lesson-plan";
+import { fetchLessonPlanId } from "@/lib/fetch";
 import { ContentCard } from "@/components/office/content/content-card";
 
 interface ActivitiesIdPageProps {
   params: {
-    id: string;
+    id: Promise<string>;
   };
 }
 

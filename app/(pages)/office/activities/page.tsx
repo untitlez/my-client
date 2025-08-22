@@ -1,4 +1,4 @@
-import { fetchLessonPlan } from "@/lib/fetch-lesson-plan";
+import { fetchLessonPlan } from "@/lib/fetch";
 import { FormType } from "@/validators/form.validator";
 
 import { ContentTable } from "@/components/office/content/content-table";

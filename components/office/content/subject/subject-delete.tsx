@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -21,40 +22,47 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-interface ContentDeleteProps {
-  id: string;
+interface SubjectDeleteProps {
+  id?: string;
+  subject: string;
 }
 
-export const ContentDelete = ({ id }: ContentDeleteProps) => {
+export const SubjectDelete = ({ id, subject }: SubjectDeleteProps) => {
+  const [open, setOpen] = useState(false);
   const router = useRouter();
 
   const onDelete = async () => {
     try {
-      await axios.delete(Config.API_URL + routes.api.lessonPlan + id);
-      toast.success("ลบแผนการสอนสำเร็จ!");
+      await axios.delete(Config.API_URL + routes.api.subject + id);
+      toast.success("ลบวิชาเรียนสำเร็จ!");
       router.refresh();
+      setOpen(false);
     } catch (error) {
       console.log("error", error);
     }
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button size="icon" variant="destructive" className="btn">
+        <Button variant="outline" className="cursor-pointer text-destructive">
           <Trash2 className="size-4" />
+          ลบ
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle> คุณต้องการลบข้อมูลนี้หรือไม่ ?</AlertDialogTitle>
+          <AlertDialogTitle>
+            คุณต้องการลบวิชา <span className="text-primary">{subject}</span>{" "}
+            หรือไม่?
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            การลบนี้ไม่สามารถย้อนกลับได้ ข้อมูลทั้งหมดจะถูกลบถาวร
+            การลบนี้ไม่สามารถย้อนกลับได้
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel className="btn">ยกเลิก</AlertDialogCancel>
-          <AlertDialogAction className="btn" onClick={onDelete}>
+          <AlertDialogAction className="btn ml-auto" onClick={onDelete}>
             ลบ
           </AlertDialogAction>
         </AlertDialogFooter>

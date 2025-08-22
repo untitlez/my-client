@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Plus } from "lucide-react";
 
+import { fieldItems } from "@/lib/constant-form";
+
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import {
@@ -14,25 +16,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const inputItems2 = [
-  {
-    name: "objectives",
-    type: "textarea",
-    label: "จุดประสงค์",
-    placeholder: "จุดประสงค์การเรียนรู้",
-  },
-  {
-    name: "activities",
-    type: "textarea",
-    label: "กิจกรรม",
-    placeholder: "กิจกรรมการเรียนรู้",
-  },
-  {
-    name: "assessment",
-    type: "textarea",
-    label: "วัดผล และประเมิน",
-    placeholder: "วิธีการวัดและประเมินผล",
-  },
+const inputItems = [
+  fieldItems.objectives,
+  fieldItems.activities,
+  fieldItems.assessment,
 ];
 
 export const FormTextarea = () => {
@@ -52,7 +39,7 @@ export const FormTextarea = () => {
           เพิ่มจุดประสงค์ กิจกรรม และวัดผลการประเมิน
         </Button>
       ) : (
-        inputItems2.map((item, i) => (
+        inputItems.map((item, i) => (
           <FormField
             key={i}
             control={control}

@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Moon } from "lucide-react";
 
-import { AppSidebarItems } from "./app-sidebar";
+import { sidebarItems } from "@/lib/constant-sidebar";
 import { Switch } from "@/components/ui/switch";
 import {
   SidebarGroup,
@@ -14,6 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+
 
 export const SidebarFooterMenu = () => {
   const { theme, setTheme } = useTheme();
@@ -29,7 +30,7 @@ export const SidebarFooterMenu = () => {
     <SidebarGroup>
       <SidebarGroupContent>
         <SidebarMenu>
-          {AppSidebarItems.footerMenu.map((item) => (
+          {sidebarItems.footerMenu.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild size="sm" className="cursor-pointer">
                 <Link href={item.url}>

@@ -12,3 +12,9 @@ export const fetchLessonPlanId = async (id: string) => {
   const data = await res.json();
   return data;
 };
+
+export const fetchSubject = async () => {
+  const res = await fetch(Config.API_URL + routes.api.subject);
+  const data = await res.json();
+  return data;
+};

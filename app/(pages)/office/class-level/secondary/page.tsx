@@ -1,4 +1,4 @@
-import { fetchLessonPlan } from "@/lib/fetch-lesson-plan";
+import { fetchLessonPlan } from "@/lib/fetch";
 import { FormType } from "@/validators/form.validator";
 
 import { ContentTable } from "@/components/office/content/content-table";
@@ -6,7 +6,7 @@ import { ContentTable } from "@/components/office/content/content-table";
 export default async function SecondaryPage() {
   const data = await fetchLessonPlan();
   const findSecondary = data.filter((item: FormType) =>
-    item.classLevel.startsWith("secondaryEd")
+    item.classLevel.startsWith("มัธยมศึกษา")
   );
 
   return (

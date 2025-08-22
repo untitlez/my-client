@@ -21,5 +21,6 @@ export const routes = {
     images: "/api/images/",
     user: "/api/user/",
     lessonPlan: "/api/lesson-plan/",
+    subject: "/api/subject/",
   },
 };

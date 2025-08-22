@@ -6,6 +6,7 @@ import { useFormContext } from "react-hook-form";
 import { Loader2, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 
+import { fieldItems } from "@/lib/constant-form";
 import { FormType } from "@/validators/form.validator";
 
 import { Button } from "../ui/button";
@@ -28,21 +29,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const classLevelItems = [
-  { value: "primaryEd_1", label: "ป.1" },
-  { value: "primaryEd_2", label: "ป.2" },
-  { value: "primaryEd_3", label: "ป.3" },
-  { value: "primaryEd_4", label: "ป.4" },
-  { value: "primaryEd_5", label: "ป.5" },
-  { value: "primaryEd_6", label: "ป.6" },
-  { value: "secondaryEd_1", label: "ม.1" },
-  { value: "secondaryEd_2", label: "ม.2" },
-  { value: "secondaryEd_3", label: "ม.3" },
-  { value: "secondaryEd_4", label: "ม.4" },
-  { value: "secondaryEd_5", label: "ม.5" },
-  { value: "secondaryEd_6", label: "ม.6" },
-];
-
 interface FormSubmitProps {
   onSubmit: (formData: FormType) => Promise<void>;
   fetchData: (values: string) => Promise<void>;
@@ -59,24 +45,21 @@ export const FormSubmit = ({
   const [open, setOpen] = useState(false);
   const { handleSubmit, formState, watch } = useFormContext<FormType>();
 
+  const allValue = watch();
+
+  const items = [
+    { label: fieldItems.classLevel.label, placeholder: allValue.classLevel },
+    { label: fieldItems.subject.label, placeholder: allValue.subject },
+    { label: fieldItems.unitName.label, placeholder: allValue.unitName },
+    { label: fieldItems.objectives.label, placeholder: allValue.objectives },
+    { label: fieldItems.activities.label, placeholder: allValue.activities },
+    { label: fieldItems.assessment.label, placeholder: allValue.assessment },
+  ];
+
   const handleConfirm = (data: FormType) => {
     onSubmit(data);
     setOpen(false);
   };
-
-  const allValue = watch();
-  const classLevelValue = classLevelItems.find(
-    (item) => item.value === allValue.classLevel
-  );
-
-  const items = [
-    { label: "ระดับชั้น", placeholder: classLevelValue?.label },
-    { label: "วิชาเรียน", placeholder: allValue.subject },
-    { label: "ชื่อหน่วย", placeholder: allValue.unitName },
-    { label: "จุดประสงค์", placeholder: allValue.objectives },
-    { label: "กิจกรรม", placeholder: allValue.activities },
-    { label: "วิธีประเมิน", placeholder: allValue.assessment },
-  ];
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
@@ -99,12 +82,12 @@ export const FormSubmit = ({
             <div className="flex flex-col gap-3 my-4">
               {allValue.unitName &&
                 (isLoading ? (
-                  <div className="aspect-video bg-muted rounded-xl flex items-center justify-center mb-3 sm:mb-6 gap-2">
+                  <div className="aspect-video bg-muted border rounded-xl shadow-md flex items-center justify-center mb-3 sm:mb-6 gap-2">
                     <Loader2 className="size-4 animate-spin" />
                     กำลังค้นหารูปภาพ
                   </div>
                 ) : (
-                  <div className="relative aspect-video overflow-hidden bg-muted rounded-xl mb-3 sm:mb-6 shadow-md">
+                  <div className="relative aspect-video overflow-hidden bg-muted rounded-xl shadow-md mb-3 sm:mb-6">
                     <Image
                       src={image ?? ""}
                       alt="images"
@@ -117,12 +100,12 @@ export const FormSubmit = ({
               {items.map((item, i) => (
                 <div
                   key={i}
-                  className="flex flex-wrap sm:grid sm:grid-cols-6 items-center gap-1 sm:gap-3"
+                  className="flex flex-wrap sm:grid sm:grid-cols-4 items-center gap-1 sm:gap-3"
                 >
-                  <Label className="flex text-center">{item.label}</Label>
+                  <Label className="flex items-center">{item.label}</Label>
                   <Input
                     disabled={!item.placeholder}
-                    className="col-span-5 pointer-events-none bg-input/50"
+                    className="col-span-3 pointer-events-none bg-input/50"
                     placeholder={item.placeholder}
                   />
                 </div>

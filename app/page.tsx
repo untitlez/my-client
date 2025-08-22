@@ -38,11 +38,11 @@ export default function Home() {
 
   const onSubmit = async (formData: FormType) => {
     try {
+      setFormDetail(formData);
       const { data } = await axios.post(
         Config.API_URL + routes.api.lessonPlan,
         formData
       );
-      setFormDetail(data)
       form.reset();
       console.log("data", data);
       toast.success("บันทึกแผนการสอนสำเร็จ !");
@@ -60,7 +60,7 @@ export default function Home() {
       setImage(data);
       form.setValue("image", data);
       setIsLoading(false);
-    } catch (error: unknown) {
+    } catch (error) {
       console.log("error", error);
     }
   };

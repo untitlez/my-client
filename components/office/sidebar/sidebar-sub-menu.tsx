@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { AppSidebarItems } from "./app-sidebar";
+import { sidebarItems } from "@/lib/constant-sidebar";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -16,7 +16,7 @@ export const SidebarSubMenu = () => {
     <SidebarGroup>
       <SidebarGroupLabel>ทั้งหมด</SidebarGroupLabel>
       <SidebarMenu>
-        {AppSidebarItems.subMenu.map((item) => (
+        {sidebarItems.subMenu.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton
               asChild
