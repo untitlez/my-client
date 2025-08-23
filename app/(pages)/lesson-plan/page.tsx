@@ -7,7 +7,7 @@ export default async function LessonPlanPage() {
   const latedData = data[data.length - 1];
 
   const subjects = await fetchSubject();
-console.log('subjects', subjects)
+
   return (
     <AppForm initImages={initImages} data={latedData} subjects={subjects} />
   );
