@@ -15,7 +15,7 @@ export const fetchLessonPlanId = async (id: string) => {
 
 export const fetchLessonPlanQuery = async (query: string) => {
   const res = await fetch(
-    Config.API_URL + routes.api.lessonPlan + "?search=" + query,
+    Config.API_URL + routes.api.lessonPlan + "?search=" + query
   );
   const data = await res.json();
   return data;
