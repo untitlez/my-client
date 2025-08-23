@@ -26,3 +26,9 @@ export const fetchSubject = async () => {
   const data = await res.json();
   return data;
 };
+
+export const fetchRole = async () => {
+  const res = await fetch(Config.API_URL + routes.api.auth.admin);
+  const data = await res.json();
+  return data;
+};

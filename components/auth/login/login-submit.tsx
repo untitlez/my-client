@@ -8,9 +8,20 @@ import { routes } from "@/lib/routes";
 
 import { Button } from "../../ui/button";
 import { Separator } from "../../ui/separator";
+import { Config } from "@/lib/config";
 
 export const LoginSubmit = () => {
-  const { formState } = useFormContext();
+  const { formState, setValue } = useFormContext();
+
+  const onFillMember = () => {
+    setValue("username", Config.LOGIN.MEMBER.USERNAME, { shouldDirty: true });
+    setValue("password", Config.LOGIN.MEMBER.PASSWORD, { shouldDirty: true });
+  };
+
+  const onFillAdmin = () => {
+    setValue("username", Config.LOGIN.ADMIN.USERNAME, { shouldDirty: true });
+    setValue("password", Config.LOGIN.ADMIN.PASSWORD, { shouldDirty: true });
+  };
 
   return (
     <div className="grid gap-6 py-2">
@@ -49,6 +60,7 @@ export const LoginSubmit = () => {
           variant="outline"
           className="flex-1 cursor-pointer active:scale-95"
           disabled={formState.isSubmitting}
+          onClick={onFillMember}
         >
           บัญชีสมาชิก
         </Button>
@@ -57,6 +69,7 @@ export const LoginSubmit = () => {
           variant="outline"
           className="flex-1 cursor-pointer active:scale-95"
           disabled={formState.isSubmitting}
+          onClick={onFillAdmin}
         >
           บัญชีผู้ดูแล
         </Button>

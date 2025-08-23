@@ -43,7 +43,11 @@ export default function AppLogin({ initImages }: AppLoginProps) {
 
   const onSubmit = async (formData: UserType) => {
     try {
-      await axios.post(Config.API_URL + routes.api.login, formData);
+      const { data } = await axios.post(
+        Config.API_URL + routes.api.login,
+        formData
+      );
+
       router.push(routes.pages.lessonPlan);
       form.reset();
       toast.success("เข้าสู่ระบบสำเร็จ !");

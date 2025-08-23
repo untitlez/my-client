@@ -54,7 +54,7 @@ export const Home = ({ initImages }: HomeProps) => {
           <Button
             asChild
             variant="outline"
-            className="btn py-6 sm:py-8 text-base sm:text-lg hover:text-red-400"
+            className="btn py-6 sm:py-8 text-base sm:text-lg hover:text-chart-5"
           >
             <Link href={routes.pages.auth.login}>เข้าสู่ระบบ</Link>
           </Button>

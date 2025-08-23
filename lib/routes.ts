@@ -22,6 +22,10 @@ export const routes = {
     },
   },
   api: {
+    auth: {
+      admin: "/api/admin/",
+      member: "/api/member/",
+    },
     login: "/api/user/login/",
     user: "/api/user/",
     images: "/api/images/",
