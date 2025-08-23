@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 interface ContentDeleteProps {
-  id: string;
+  id?: string;
 }
 
 export const ContentDelete = ({ id }: ContentDeleteProps) => {
@@ -33,8 +33,8 @@ export const ContentDelete = ({ id }: ContentDeleteProps) => {
       await axios.delete(Config.API_URL + routes.api.lessonPlan + id);
       toast.success("ลบแผนการสอนสำเร็จ!");
       router.refresh();
-    } catch (error) {
-      console.log("error", error);
+    } catch {
+      toast.error("ลบแผนการสอนไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
     }
   };
 

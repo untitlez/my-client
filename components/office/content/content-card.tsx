@@ -82,7 +82,7 @@ export const ContentCard = ({ data }: ContentCardProps) => {
           กลับ
         </Button>
         <Button asChild type="button" className="btn">
-          <Link href={routes.pages.document} target="_blank">
+          <Link href={routes.pages.document + data._id} target="_blank">
             บันทึกไฟล์ PDF
           </Link>
         </Button>

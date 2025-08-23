@@ -1,12 +1,16 @@
 export const routes = {
   pages: {
     home: "/",
-    auth: "/auth",
-    document: "/document",
+    auth: {
+      login: "/auth/login/",
+      signUp: "/auth/sign-up",
+    },
+    document: "/document/",
+    lessonPlan: "/lesson-plan/",
     office: {
-      home: "/office",
+      home: "/office/",
       classLevel: {
-        home: "/office/class-level",
+        home: "/office/class-level/",
         primary: "/office/class-level/primary/",
         secondary: "/office/class-level/secondary/",
       },
@@ -18,8 +22,9 @@ export const routes = {
     },
   },
   api: {
-    images: "/api/images/",
+    login: "/api/user/login/",
     user: "/api/user/",
+    images: "/api/images/",
     lessonPlan: "/api/lesson-plan/",
     subject: "/api/subject/",
   },

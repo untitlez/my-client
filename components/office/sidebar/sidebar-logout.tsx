@@ -18,7 +18,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export function SidebarLogout() {
+export const SidebarLogout = () => {
   const router = useRouter();
 
   const onLogout = () => {
@@ -47,4 +47,4 @@ export function SidebarLogout() {
       </AlertDialogContent>
     </AlertDialog>
   );
-}
+};

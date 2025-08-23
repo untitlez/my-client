@@ -19,7 +19,7 @@ export default async function SubjectListPage({
 
   const data = await fetchLessonPlan();
   const findSubjectList = data.filter(
-    (item: FormType) => item.subject === query.subject
+    (item: FormType) => item.subject === query.subject,
   );
 
   return (

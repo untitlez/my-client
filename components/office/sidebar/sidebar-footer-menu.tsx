@@ -15,7 +15,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-
 export const SidebarFooterMenu = () => {
   const { theme, setTheme } = useTheme();
   const [checkTheme, setCheckTheme] = useState(false);
@@ -32,7 +31,7 @@ export const SidebarFooterMenu = () => {
         <SidebarMenu>
           {sidebarItems.footerMenu.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild size="sm" className="cursor-pointer">
+              <SidebarMenuButton asChild className="active:opacity-80">
                 <Link href={item.url}>
                   <item.icon />
                   <span>{item.title}</span>
@@ -43,7 +42,7 @@ export const SidebarFooterMenu = () => {
 
           {/* Theme Toggle */}
           <SidebarMenuItem>
-            <SidebarMenuButton asChild size="sm">
+            <SidebarMenuButton asChild>
               <div className="justify-between">
                 <div className="flex items-center gap-2">
                   <Moon className="size-4" />

@@ -15,7 +15,11 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  count: number;
+}
+
+export const AppSidebar = ({ count }: AppSidebarProps) => {
   return (
     <Sidebar className="top-(--header-height) h-[calc(100svh-var(--header-height))]!">
       <SidebarHeader>
@@ -27,7 +31,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMainMenu />
-        <SidebarSubMenu />
+        <SidebarSubMenu count={count} />
       </SidebarContent>
       <SidebarFooter>
         <SidebarFooterMenu />
@@ -35,4 +39,4 @@ export function AppSidebar() {
       </SidebarFooter>
     </Sidebar>
   );
-}
+};

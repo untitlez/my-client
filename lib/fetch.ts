@@ -13,6 +13,14 @@ export const fetchLessonPlanId = async (id: string) => {
   return data;
 };
 
+export const fetchLessonPlanQuery = async (query: string) => {
+  const res = await fetch(
+    Config.API_URL + routes.api.lessonPlan + "?search=" + query,
+  );
+  const data = await res.json();
+  return data;
+};
+
 export const fetchSubject = async () => {
   const res = await fetch(Config.API_URL + routes.api.subject);
   const data = await res.json();

@@ -56,8 +56,8 @@ export const SubjectEdit = ({ id, subject }: SubjectEditProps) => {
       router.refresh();
       setOpen(false);
       form.reset();
-    } catch (error) {
-      console.log("error", error);
+    } catch {
+      toast.success("แก้ไขวิชาเรียนไม่สำเร็จ ลองใหม่อีกครั้ง");
     }
   };
 

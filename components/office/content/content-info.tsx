@@ -19,7 +19,7 @@ interface ContentModalProps {
   title: string;
   items: string;
 }
-export const ContentModal = ({ title = "Label", items }: ContentModalProps) => {
+export const ContentInfo = ({ title = "Label", items }: ContentModalProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>

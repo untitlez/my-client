@@ -51,8 +51,8 @@ export const SubjectAdd = () => {
       router.refresh();
       setOpen(false);
       form.reset();
-    } catch (error) {
-      console.log("error", error);
+    } catch {
+      toast.error("เพิ่มวิชาเรียนไม่สำเร็จ ลองใหม่อีกครั้ง");
     }
   };
 

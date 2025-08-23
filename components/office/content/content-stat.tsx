@@ -31,7 +31,8 @@ export const ContentStat = ({ data, subjects }: ContentStatProps) => {
       {subjects.map((item, i) => (
         <div
           key={i}
-          className="rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 active:scale-95 transform duration-300">
+          className="rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 active:scale-95 transform duration-300"
+        >
           <Link
             href={`${routes.pages.office.subject}/subject-list?subject=${item.subject}`}
           >

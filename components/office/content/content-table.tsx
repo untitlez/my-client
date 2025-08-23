@@ -4,9 +4,10 @@ import Link from "next/link";
 import { FileX, NotepadText } from "lucide-react";
 
 import { routes } from "@/lib/routes";
-import { ResponseFormType } from "@/validators/form.validator";
+import { FormType } from "@/validators/form.validator";
 
-import { ContentModal } from "./content-modal";
+import { ContentInfo } from "./content-info";
+import { ContentDelete } from "./content-delete";
 import {
   Table,
   TableBody,
@@ -21,10 +22,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { ContentDelete } from "./content-delete";
 
 interface ContentTableProps {
-  data: ResponseFormType;
+  data: FormType[];
 }
 
 export const ContentTable = ({ data }: ContentTableProps) => {
@@ -53,21 +53,21 @@ export const ContentTable = ({ data }: ContentTableProps) => {
                 <TableCell>{item.unitName}</TableCell>
                 <TableCell>
                   {item.objectives ? (
-                    <ContentModal title="จุดประสงค์" items={item.objectives} />
+                    <ContentInfo title="จุดประสงค์" items={item.objectives} />
                   ) : (
                     "-"
                   )}
                 </TableCell>
                 <TableCell>
                   {item.activities ? (
-                    <ContentModal title="กิจกรรม" items={item.activities} />
+                    <ContentInfo title="กิจกรรม" items={item.activities} />
                   ) : (
                     "-"
                   )}
                 </TableCell>
                 <TableCell>
                   {item.assessment ? (
-                    <ContentModal title="วิธีประเมิน" items={item.assessment} />
+                    <ContentInfo title="วิธีประเมิน" items={item.assessment} />
                   ) : (
                     "-"
                   )}
@@ -81,7 +81,7 @@ export const ContentTable = ({ data }: ContentTableProps) => {
                         variant="default"
                         className="btn"
                       >
-                        <Link href={routes.pages.office.objectives + item._id}>
+                        <Link href={routes.pages.office.home + item._id}>
                           <NotepadText className="size-4" />
                         </Link>
                       </Button>
@@ -90,7 +90,7 @@ export const ContentTable = ({ data }: ContentTableProps) => {
                       <p className="font-semibold">ดูข้อมูล</p>
                     </TooltipContent>
                   </Tooltip>
-                  <ContentDelete id={item._id}/>
+                  <ContentDelete id={item._id} />
                 </TableCell>
               </TableRow>
             ))

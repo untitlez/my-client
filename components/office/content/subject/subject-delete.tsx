@@ -37,8 +37,8 @@ export const SubjectDelete = ({ id, subject }: SubjectDeleteProps) => {
       toast.success("ลบวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);
-    } catch (error) {
-      console.log("error", error);
+    } catch {
+      toast.error("ลบวิชาเรียนไม่สำเร็จ ลองใหม่อีกครั้ง");
     }
   };
 

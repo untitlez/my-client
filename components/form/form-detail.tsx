@@ -30,18 +30,18 @@ import {
 } from "@/components/ui/table";
 
 interface FormDetailProps {
-  formDetail: FormType;
+  data: FormType;
   image: string | undefined;
 }
 
-export const FormDetail = ({ formDetail, image }: FormDetailProps) => {
+export const FormDetail = ({ data }: FormDetailProps) => {
   const items = [
-    { label: fieldItems.classLevel.label, placeholder: formDetail.classLevel },
-    { label: fieldItems.subject.label, placeholder: formDetail.subject },
-    { label: fieldItems.unitName.label, placeholder: formDetail.unitName },
-    { label: fieldItems.objectives.label, placeholder: formDetail.objectives },
-    { label: fieldItems.activities.label, placeholder: formDetail.activities },
-    { label: fieldItems.assessment.label, placeholder: formDetail.assessment },
+    { label: fieldItems.classLevel.label, placeholder: data.classLevel },
+    { label: fieldItems.subject.label, placeholder: data.subject },
+    { label: fieldItems.unitName.label, placeholder: data.unitName },
+    { label: fieldItems.objectives.label, placeholder: data.objectives },
+    { label: fieldItems.activities.label, placeholder: data.activities },
+    { label: fieldItems.assessment.label, placeholder: data.assessment },
   ];
 
   return (
@@ -58,23 +58,21 @@ export const FormDetail = ({ formDetail, image }: FormDetailProps) => {
           <AlertDialogDescription asChild className="my-4">
             <Table>
               <TableCaption>
-                {formDetail.unitName && (
-                  <div className="relative aspect-video overflow-hidden mb-3 sm:mb-6 shadow-md">
-                    <Image
-                      src={image ?? ""}
-                      alt="images"
-                      className="rounded-xl object-cover"
-                      sizes="50vw"
-                      fill
-                    />
-                  </div>
-                )}
+                <div className="relative aspect-video overflow-hidden rounded-xl border mb-3 sm:mb-6 shadow-md">
+                  <Image
+                    src={data.image ?? ""}
+                    alt="images"
+                    className="rounded-xl object-cover"
+                    sizes="50vw"
+                    fill
+                  />
+                </div>
               </TableCaption>
               <TableBody>
                 {items.map((item, i) => (
                   <TableRow key={i}>
                     <TableHead className="w-1/4">{item.label} :</TableHead>
-                    <TableCell className="text-center">
+                    <TableCell className="text-center max-w-xs break-words whitespace-normal">
                       {item.placeholder}
                     </TableCell>
                   </TableRow>
@@ -86,7 +84,7 @@ export const FormDetail = ({ formDetail, image }: FormDetailProps) => {
         <AlertDialogFooter>
           <AlertDialogCancel className="btn sm:mr-auto">ปิด</AlertDialogCancel>
           <AlertDialogAction asChild className="btn">
-            <Link href={routes.pages.document} target="_blank">
+            <Link href={routes.pages.document + data._id} target="_blank">
               บันทึกไฟล์ PDF
             </Link>
           </AlertDialogAction>

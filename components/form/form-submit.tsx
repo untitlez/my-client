@@ -31,14 +31,14 @@ import {
 
 interface FormSubmitProps {
   onSubmit: (formData: FormType) => Promise<void>;
-  fetchData: (values: string) => Promise<void>;
+  fetchImages: (values: string) => Promise<void>;
   image: string | undefined;
   isLoading: boolean;
 }
 
 export const FormSubmit = ({
   onSubmit,
-  fetchData,
+  fetchImages,
   image,
   isLoading,
 }: FormSubmitProps) => {
@@ -121,7 +121,7 @@ export const FormSubmit = ({
                 <Button
                   variant="outline"
                   className="btn sm:mr-auto"
-                  onClick={() => fetchData(allValue.unitName)}
+                  onClick={() => fetchImages(allValue.unitName)}
                 >
                   <span>
                     <RefreshCcw className="size-4" />
@@ -147,7 +147,7 @@ export const FormSubmit = ({
               <Button
                 type="submit"
                 onClick={handleSubmit(handleConfirm, () =>
-                  toast.error("กรุณากรอกข้อมูลให้ครบถ้วน")
+                  toast.error("กรุณากรอกข้อมูลให้ครบถ้วน"),
                 )}
               >
                 บันทึก

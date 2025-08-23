@@ -2,12 +2,8 @@
 
 import dynamic from "next/dynamic";
 
-const DocumentViewerDynamic = dynamic(
+export const DocumentPdfView = dynamic(
   () =>
     import("@/components/document/document-pdf").then((mod) => mod.DocumentPdf),
-  { ssr: false }
+  { ssr: false },
 );
-
-export default function DocumentPage() {
-  return <DocumentViewerDynamic />;
-}

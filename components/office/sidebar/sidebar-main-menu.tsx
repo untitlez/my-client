@@ -20,7 +20,6 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
-
 export const SidebarMainMenu = () => {
   return (
     <SidebarGroup>
@@ -30,7 +29,7 @@ export const SidebarMainMenu = () => {
             <SidebarMenuItem>
               <SidebarMenuButton
                 asChild
-                className="cursor-pointer"
+                className="active:opacity-80"
                 tooltip={item.title}
               >
                 <Link href={item.url ?? ""}>
@@ -50,7 +49,10 @@ export const SidebarMainMenu = () => {
                     <SidebarMenuSub>
                       {item.menu?.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
+                          <SidebarMenuSubButton
+                            asChild
+                            className="active:opacity-80"
+                          >
                             <Link href={subItem.url}>
                               <span>{subItem.title}</span>
                             </Link>

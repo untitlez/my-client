@@ -14,10 +14,10 @@ import {
 } from "@/components/ui/form";
 
 interface FormTextProps {
-  fetchData: (values: string) => Promise<void>;
+  fetchImages: (values: string) => Promise<void>;
 }
 
-export const FormText = ({ fetchData }: FormTextProps) => {
+export const FormText = ({ fetchImages }: FormTextProps) => {
   const { control } = useFormContext();
 
   return (
@@ -36,7 +36,7 @@ export const FormText = ({ fetchData }: FormTextProps) => {
               placeholder={fieldItems.unitName.placeholder}
               onBlur={() => {
                 if (!field.value) return;
-                fetchData(field.value);
+                fetchImages(field.value);
               }}
             />
           </FormControl>

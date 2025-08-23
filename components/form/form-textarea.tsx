@@ -21,43 +21,27 @@ const inputItems = [
   fieldItems.activities,
   fieldItems.assessment,
 ];
-
 export const FormTextarea = () => {
   const { control } = useFormContext();
-  const [openInput, setOpenInput] = useState(false);
 
   return (
     <>
-      {!openInput ? (
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full cursor-pointer"
-          onClick={() => setOpenInput(true)}
-        >
-          <Plus className="size-4" />
-          เพิ่มจุดประสงค์ กิจกรรม และวัดผลการประเมิน
-        </Button>
-      ) : (
-        inputItems.map((item, i) => (
-          <FormField
-            key={i}
-            control={control}
-            name={item.name}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="flex items-center">
-                  {item.label}
-                </FormLabel>
-                <FormControl>
-                  <Textarea placeholder={item.placeholder} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))
-      )}
+      {inputItems.map((item, i) => (
+        <FormField
+          key={i}
+          control={control}
+          name={item.name}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center">{item.label}</FormLabel>
+              <FormControl>
+                <Textarea placeholder={item.placeholder} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      ))}
     </>
   );
 };

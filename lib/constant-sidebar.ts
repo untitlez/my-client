@@ -77,7 +77,7 @@ export const sidebarItems = {
     },
     {
       title: "สร้างแผนการสอน",
-      url: routes.pages.home,
+      url: routes.pages.lessonPlan,
       icon: ClipboardCheck,
     },
   ],

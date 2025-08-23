@@ -50,7 +50,7 @@ export const FormSelect = () => {
                       <SelectItem key={i} value={opt.value}>
                         {opt.label}
                       </SelectItem>
-                    )
+                    ),
                   )}
                   <SelectLabel className="px-2 py-1 text-sm font-bold text-gray-500">
                     มัธยมศึกษา
@@ -60,7 +60,7 @@ export const FormSelect = () => {
                       <SelectItem key={i} value={opt.value}>
                         {opt.label}
                       </SelectItem>
-                    )
+                    ),
                   )}
                 </SelectGroup>
               </SelectContent>

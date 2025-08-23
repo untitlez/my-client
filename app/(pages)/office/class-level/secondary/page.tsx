@@ -6,7 +6,7 @@ import { ContentTable } from "@/components/office/content/content-table";
 export default async function SecondaryPage() {
   const data = await fetchLessonPlan();
   const findSecondary = data.filter((item: FormType) =>
-    item.classLevel.startsWith("มัธยมศึกษา")
+    item.classLevel.startsWith("มัธยมศึกษา"),
   );
 
   return (

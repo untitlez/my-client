@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
 import {
   PDFViewer,
   Page,
@@ -13,7 +11,8 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-import { Config } from "@/lib/config";
+import { fieldItems } from "@/lib/constant-form";
+import { FormType } from "@/validators/form.validator";
 
 Font.register({
   family: "Kanit",
@@ -27,34 +26,19 @@ Font.register({
   fontWeight: "bold",
 });
 
-const items = [
-  { label: "ระดับชั้น", value: "ป.1" },
-  { label: "วิชาเรียน", value: "ภาษาไทย" },
-  { label: "ชื่อหน่วย", value: "วรรณกรรม" },
-  { label: "จุดประสงค์", value: "เพื่ออ่านออกเสียง" },
-  { label: "กิจกรรม", value: "ท่องบทความ" },
-  { label: "วิธีประเมิน", value: "เสียงดังฟังชัด ไม่พูดผิด" },
-];
+interface DocumentPdfProps {
+  data: FormType;
+}
 
-export const DocumentPdf = () => {
-  const [image, setImage] = useState();
-
-  const fetchData = async (unitName: string) => {
-    try {
-      const { data } = await axios.get(Config.API_URL + "/api/images", {
-        params: { query: unitName },
-      });
-      setImage(data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData("cat");
-  }, []);
-
-  console.log("image", image);
+export const DocumentPdf = ({ data }: DocumentPdfProps) => {
+  const items = [
+    { label: fieldItems.classLevel.label, value: data.classLevel },
+    { label: fieldItems.subject.label, value: data.subject },
+    { label: fieldItems.unitName.label, value: data.unitName },
+    { label: fieldItems.objectives.label, value: data.objectives },
+    { label: fieldItems.activities.label, value: data.activities },
+    { label: fieldItems.assessment.label, value: data.assessment },
+  ];
 
   return (
     <PDFViewer style={{ width: "100%", height: "100vh" }}>
@@ -76,11 +60,14 @@ export const DocumentPdf = () => {
           </View>
 
           {/* Image */}
-          {image && (
-            <View style={styles.imageContainer}>
-              <Image src={image} style={styles.image} />
-            </View>
-          )}
+          <View style={styles.imageContainer}>
+            <Image src={data.image} style={styles.image} />
+          </View>
+
+          <View style={styles.footer}>
+            <Text>ลงชื่อผู้จัดทำ :</Text>
+            <View style={styles.signatureLine} />
+          </View>
         </Page>
       </Document>
     </PDFViewer>
@@ -113,7 +100,26 @@ const styles = StyleSheet.create({
   headerCell: {
     width: "30%",
   },
-  cell: { width: "70%", textAlign: "center" },
-  imageContainer: { justifyContent: "center" },
+  cell: {
+    width: "100%",
+    textAlign: "center",
+    wordBreak: "break-word",
+    whiteSpace: "normal",
+  },
+  imageContainer: {
+    justifyContent: "center",
+  },
   image: { width: "100%", height: "70%", objectFit: "cover", borderRadius: 16 },
+  footer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    gap: 8,
+  },
+  signatureLine: {
+    width: 100,
+    borderBottomWidth: 1,
+    borderColor: "#aaa",
+  },
 });

@@ -53,12 +53,12 @@ export function FormSearchSelect() {
                   aria-expanded={open}
                   className={cn(
                     "w-full justify-between capitalize",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
                   )}
                 >
                   {field.value
                     ? fieldItems.subject.subjects.find(
-                        (subject) => subject.value === field.value
+                        (subject) => subject.value === field.value,
                       )?.value
                     : "เลือกวิชาเรียน"}
                   <ChevronsUpDown className="opacity-50" />
@@ -89,7 +89,7 @@ export function FormSearchSelect() {
                             "ml-auto",
                             subject.value === field.value
                               ? "opacity-100"
-                              : "opacity-0"
+                              : "opacity-0",
                           )}
                         />
                       </CommandItem>

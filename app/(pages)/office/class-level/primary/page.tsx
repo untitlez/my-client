@@ -6,8 +6,9 @@ import { ContentTable } from "@/components/office/content/content-table";
 export default async function PrimaryPage() {
   const data = await fetchLessonPlan();
   const findPrimary = data.filter((item: FormType) =>
-    item.classLevel.startsWith("ประถมศึกษา")
+    item.classLevel.startsWith("ประถมศึกษา"),
   );
+
   return (
     <div className="flex flex-col items-center">
       <ContentTable data={findPrimary} />
