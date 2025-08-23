@@ -41,8 +41,10 @@ export const SidebarLogout = () => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>ยกเลิก</AlertDialogCancel>
-          <AlertDialogAction onClick={onLogout}>ยืนยัน</AlertDialogAction>
+          <AlertDialogCancel className="btn">ยกเลิก</AlertDialogCancel>
+          <AlertDialogAction className="btn" onClick={onLogout}>
+            ยืนยัน
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -6,6 +6,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { fieldItems } from "@/lib/constant-form";
+import { SubjectType } from "@/validators/subject.validator";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -29,7 +30,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function FormSearchSelect() {
+interface FormSearchSelectProps {
+  subjects: SubjectType[];
+}
+
+export function FormSearchSelect({ subjects }: FormSearchSelectProps) {
   const { control, setValue } = useFormContext();
   const [open, setOpen] = useState(false);
 
@@ -53,13 +58,13 @@ export function FormSearchSelect() {
                   aria-expanded={open}
                   className={cn(
                     "w-full justify-between capitalize",
-                    !field.value && "text-muted-foreground",
+                    !field.value && "text-muted-foreground"
                   )}
                 >
                   {field.value
-                    ? fieldItems.subject.subjects.find(
-                        (subject) => subject.value === field.value,
-                      )?.value
+                    ? subjects.find(
+                        (subject) => subject.subject === field.value
+                      )?.subject
                     : "เลือกวิชาเรียน"}
                   <ChevronsUpDown className="opacity-50" />
                 </Button>
@@ -74,22 +79,22 @@ export function FormSearchSelect() {
                 <CommandList>
                   <CommandEmpty>ไม่พบวิชาเรียน</CommandEmpty>
                   <CommandGroup>
-                    {fieldItems.subject.subjects.map((subject) => (
+                    {subjects.map((subject, i) => (
                       <CommandItem
                         className="capitalize"
-                        key={subject.value}
-                        value={subject.value}
+                        key={i}
+                        value={subject.subject}
                         onSelect={() => {
-                          setValue("subject", subject.value);
+                          setValue("subject", subject.subject);
                         }}
                       >
-                        {subject.value}
+                        {subject.subject}
                         <Check
                           className={cn(
                             "ml-auto",
-                            subject.value === field.value
+                            subject.subject === field.value
                               ? "opacity-100"
-                              : "opacity-0",
+                              : "opacity-0"
                           )}
                         />
                       </CommandItem>

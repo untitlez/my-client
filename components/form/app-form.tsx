@@ -11,6 +11,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { SubjectType } from "@/validators/subject.validator";
 import { FormSchema, FormType } from "@/validators/form.validator";
 
 import { FormTools } from "@/components/form/form-tools";
@@ -27,9 +28,10 @@ import { Button } from "@/components/ui/button";
 interface AppFormProps {
   initImages: string;
   data: FormType;
+  subjects: SubjectType[];
 }
 
-export default function AppForm({ initImages, data }: AppFormProps) {
+export default function AppForm({ initImages, data, subjects }: AppFormProps) {
   const router = useRouter();
   const [image, setImage] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -99,7 +101,7 @@ export default function AppForm({ initImages, data }: AppFormProps) {
                 <form className="space-y-6">
                   {/* Input  */}
                   <FormSelect />
-                  <FormSearchSelect />
+                  <FormSearchSelect subjects={subjects} />
                   <FormText fetchImages={fetchImages} />
 
                   {isShowInput ? (
