@@ -41,11 +41,15 @@ export default function AppSignUp({ initImages }: AppSignUpProps) {
       router.push(routes.pages.auth.login);
       form.reset();
       toast.success("สมัครสมาชิกสำเร็จ !");
-    } catch (error: any) {
-      if (error.response?.status === 409) {
-        toast.error("Username นี้มีผู้ใช้งานแล้ว กรุณาใช้ชื่ออื่น");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) {
+          toast.error("Username นี้มีผู้ใช้งานแล้ว กรุณาใช้ชื่ออื่น");
+        } else {
+          toast.error("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+        }
       } else {
-        toast.error("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+        toast.error("ไม่ทราบสาเหตุของข้อผิดพลาด");
       }
     }
   };
