@@ -43,11 +43,7 @@ export default function AppLogin({ initImages }: AppLoginProps) {
 
   const onSubmit = async (formData: UserType) => {
     try {
-      const { data } = await axios.post(
-        Config.API_URL + routes.api.login,
-        formData
-      );
-
+      await axios.post(Config.API_URL + routes.api.login, formData);
       router.push(routes.pages.lessonPlan);
       form.reset();
       toast.success("เข้าสู่ระบบสำเร็จ !");
@@ -57,14 +53,10 @@ export default function AppLogin({ initImages }: AppLoginProps) {
   };
 
   const fetchImages = async (unitName: string) => {
-    try {
-      const { data } = await axios.get(Config.API_URL + routes.api.images, {
-        params: { query: unitName },
-      });
-      setImage(data);
-    } catch (error) {
-      console.log("error", error);
-    }
+    const { data } = await axios.get(Config.API_URL + routes.api.images, {
+      params: { query: unitName },
+    });
+    setImage(data);
   };
 
   useEffect(() => {

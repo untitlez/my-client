@@ -2,7 +2,7 @@ import AppForm from "@/components/form/app-form";
 import { fetchLessonPlan, fetchSubject } from "@/lib/fetch";
 
 export default async function LessonPlanPage() {
-  const initImages = "cat";
+  const initImages = "education";
   const data = await fetchLessonPlan();
   const latedData = data[data.length - 1];
 
