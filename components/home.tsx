@@ -34,7 +34,6 @@ export const Home = ({ initImages }: HomeProps) => {
     fetchImages(initImages);
   }, []);
 
-  console.log("image", image);
   return (
     <div
       className="min-h-svh flex flex-col items-center justify-center gap-6 p-6 md:p-10 bg-cover bg-center bg-no-repeat"
@@ -42,8 +41,8 @@ export const Home = ({ initImages }: HomeProps) => {
     >
       <Card className="bg-background/80 backdrop-blur w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl">ยินดีต้อนรับ 👋</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-3xl">ยินดีต้อนรับ👋</CardTitle>
+          <CardDescription className="text-base">
             เริ่มต้นการใช้งานระบบแผนการสอนได้เลย
           </CardDescription>
         </CardHeader>
