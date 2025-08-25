@@ -1,4 +1,4 @@
-# my-client
+# ✨ my-client
 
 This is a Next.js App Router + TypeScript project with custom form components and UI primitives.
 It connects to the my-server backend to handle login, user management, subject management, and lesson plan CRUD, including image selection for lesson plans.
@@ -7,20 +7,19 @@ It connects to the my-server backend to handle login, user management, subject m
 
 ## Features
 
-- Next.js App Router (v15+) with TypeScript
-- UI Components & Primitives via shadcn/ui
-- Form Handling with react-hook-form
-- Form Validation using zod
-- Type-safe API calls and forms with TypeScript
-- User Authentication: login/logout, JWT stored in cookies
-- Lesson Plan Management: create, edit, delete, list lesson plans
-- Subject Management: full CRUD for subjects
-- Image Selection: fetch images from my-server (Unsplash API)
-- Responsive Design for desktop and mobile
+- ⚡ Next.js App Router (v15+) with TypeScript
+- 🎨 UI Components & Primitives via shadcn/ui
+- 📝 Form Handling with react-hook-form
+- ✅ Form Validation using zod
+- 🔒 User Authentication: login/logout, JWT stored in cookies
+- 📚 Lesson Plan Management: create, edit, delete, list lesson plans
+- 📖 Subject Management: full CRUD for subjects
+- 🖼️ Image Selection: fetch images from my-server (Unsplash API)
+- 💻 Responsive Design for desktop and mobile
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 1. Clone & install dependencies
 
@@ -48,7 +47,7 @@ npm run dev
 http://localhost:3000
 ```
 
-## Project Structure
+## 📂 Project Structure
 
 ```plaintext
 
