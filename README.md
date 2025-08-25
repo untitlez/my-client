@@ -1,11 +1,11 @@
-# ✨ my-client
+# 🖥️ my-client (Frontend)
 
 This is a Next.js App Router + TypeScript project with custom form components and UI primitives.
 It connects to the my-server backend to handle login, user management, subject management, and lesson plan CRUD, including image selection for lesson plans.
 
 ---
 
-## Features
+## ✨ Features
 
 - ⚡ Next.js App Router (v15+) with TypeScript
 - 🎨 UI Components & Primitives via shadcn/ui
@@ -32,7 +32,13 @@ npm install
 2. Create .env
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5000
+NEXT_PUBLIC_API_URL=http://localhost:3000
+
+NEXT_PUBLIC_ADMIN_USERNAME=admin@example.com
+NEXT_PUBLIC_ADMIN_PASSWORD=adminpassword
+
+NEXT_PUBLIC_MEMBER_USERNAME=member@example.com
+NEXT_PUBLIC_MEMBER_PASSWORD=memberpassword
 ```
 
 3. Run development server
@@ -50,7 +56,6 @@ http://localhost:3000
 ## 📂 Project Structure
 
 ```plaintext
-
 my-client/
 ├── app/                             
 │   ├── (pages)/
