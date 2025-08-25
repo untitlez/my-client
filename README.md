@@ -54,7 +54,7 @@ http://localhost:3000
 
 my-client/
 ├── app/                             
-│   ├── (pages)/                     
+│   ├── (pages)/
 │   │   ├── auth/
 │   │   │   ├── login/
 │   │   │   │   └── page.tsx
@@ -66,6 +66,28 @@ my-client/
 │   │   ├── lesson-plan/
 │   │   │   └── page.tsx
 │   │   └── office/
+│   │       ├── [id]/
+│   │       │   └── page.tsx
+│   │       ├── activities/
+│   │       │   └── page.tsx
+│   │       ├── assessment/
+│   │       │   └── page.tsx
+│   │       ├── class-level/
+│   │       │   ├── primary/
+│   │       │   │   └── page.tsx
+│   │       │   └── secondary/
+│   │       │       └── page.tsx
+│   │       ├── objectives/
+│   │       │   └── page.tsx
+│   │       ├── subject/
+│   │       │   ├── subject-list/
+│   │       │   │   └── page.tsx
+│   │       │   └── page.tsx
+│   │       ├── unit-name/
+│   │       │   └── page.tsx
+│   │       ├── layout.tsx
+│   │       ├── loading.tsx
+│   │       └── page.tsx
 │   ├── globals.css
 │   ├── layout.tsx
 │   └── page.tsx
