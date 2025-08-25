@@ -1,4 +1,4 @@
-# 🖥️ my-client (Frontend)
+# 🖥️ My Client (Frontend)
 
 This is a Next.js App Router + TypeScript project with custom form components and UI primitives.
 It connects to the my-server backend to handle login, user management, subject management, and lesson plan CRUD, including image selection for lesson plans.
