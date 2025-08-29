@@ -54,7 +54,7 @@ export const FormDetail = ({ data }: FormDetailProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent className="sm:max-w-lg w-full max-h-[90vh] overflow-y-auto">
         <AlertDialogHeader>
-          <AlertDialogTitle>ข้อมูลแผนการสอน :</AlertDialogTitle>
+          <AlertDialogTitle>รายละเอียดแผนการสอน :</AlertDialogTitle>
           <AlertDialogDescription asChild className="my-4">
             <Table>
               <TableCaption>
@@ -84,9 +84,7 @@ export const FormDetail = ({ data }: FormDetailProps) => {
         <AlertDialogFooter>
           <AlertDialogCancel className="btn sm:mr-auto">ปิด</AlertDialogCancel>
           <AlertDialogAction asChild className="btn">
-            <Link href={routes.pages.document + data._id} target="_blank">
-              บันทึกไฟล์ PDF
-            </Link>
+            <Link href={routes.pages.document + data._id}>บันทึกไฟล์ PDF</Link>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

@@ -46,7 +46,9 @@ export const SubjectAdd = () => {
 
   const onAdd = async (data: SubjectType) => {
     try {
-      await axios.post(Config.API_URL + routes.api.subject, data);
+      await axios.post(Config.API_URL + routes.api.subject, data,{
+        withCredentials:true
+      });
       toast.success("เพิ่มวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);

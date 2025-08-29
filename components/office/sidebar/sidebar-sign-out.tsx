@@ -2,7 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
+import { toast } from "sonner";
+import axios from "axios";
 
+import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
 
 import { Button } from "@/components/ui/button";
@@ -18,11 +21,21 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export const SidebarLogout = () => {
+export const SidebarSignOut = () => {
   const router = useRouter();
 
-  const onLogout = () => {
-    router.push(routes.pages.home);
+  const onSignOut = async () => {
+    try {
+      await axios.post(
+        Config.API_URL + routes.api.auth.signout,
+        {},
+        { withCredentials: true }
+      );
+      router.push(routes.pages.home);
+      toast.success("ออกจากระบบสำเร็จ !");
+    } catch {
+      toast.error("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+    }
   };
 
   return (
@@ -42,7 +55,7 @@ export const SidebarLogout = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel className="btn">ยกเลิก</AlertDialogCancel>
-          <AlertDialogAction className="btn" onClick={onLogout}>
+          <AlertDialogAction className="btn" onClick={onSignOut}>
             ยืนยัน
           </AlertDialogAction>
         </AlertDialogFooter>

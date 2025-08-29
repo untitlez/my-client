@@ -2,8 +2,8 @@ export const routes = {
   pages: {
     home: "/",
     auth: {
-      login: "/auth/login/",
-      signUp: "/auth/sign-up",
+      signin: "/auth/sign-in/",
+      signup: "/auth/sign-up",
     },
     document: "/document/",
     lessonPlan: "/lesson-plan/",
@@ -23,13 +23,15 @@ export const routes = {
   },
   api: {
     auth: {
-      admin: "/api/admin/",
-      member: "/api/member/",
+      signin: "/api/signin/",
+      signup: "/api/signup/",
+      signout: "/api/signout/",
     },
-    login: "/api/user/login/",
+    profile: "/api/user/profile",
     user: "/api/user/",
     images: "/api/images/",
     lessonPlan: "/api/lesson-plan/",
     subject: "/api/subject/",
+    guest:"/api/lesson-plan/guest",
   },
 };

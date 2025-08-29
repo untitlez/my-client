@@ -34,7 +34,7 @@ export const SignUpSubmit = () => {
         variant="outline"
         className="cursor-pointer active:scale-95"
       >
-        <Link href={routes.pages.auth.login}>กลับไปหน้าเข้าสู่ระบบ</Link>
+        <Link href={routes.pages.auth.signin}>กลับไปหน้าเข้าสู่ระบบ</Link>
       </Button>
     </div>
   );

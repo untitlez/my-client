@@ -28,16 +28,6 @@ export const fieldItems = {
     type: "text",
     label: "วิชา",
     placeholder: "ค้นหา",
-    // subjects: [
-    //   { value: "ภาษาไทย" },
-    //   { value: "คณิตศาสตร์" },
-    //   { value: "วิทยาศาสตร์และเทคโนโลยี" },
-    //   { value: "สังคมศึกษา ศาสนา และวัฒนธรรม" },
-    //   { value: "สุขศึกษาและพลศึกษา" },
-    //   { value: "ศิลปะ" },
-    //   { value: "การงานอาชีพและเทคโนโลยี" },
-    //   { value: "ภาษาต่างประเทศ" },
-    // ],
   },
   unitName: {
     name: "unitName",

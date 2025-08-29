@@ -2,9 +2,9 @@
 
 import { useFormContext } from "react-hook-form";
 
-import { fieldItems } from "@/lib/constant-login";
+import { fieldItems } from "@/lib/constant-auth";
 
-import { LoginPopup } from "@/components/auth/login/login-popup";
+import { SignInPopup } from "@/components/auth/sign-in/signin-popup";
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -14,12 +14,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-export const LoginForm = () => {
+export const SignInForm = () => {
   const { control } = useFormContext();
 
   return (
     <>
-      {fieldItems.login.map((item, i) => (
+      {fieldItems.signIn.map((item, i) => (
         <FormField
           key={i}
           control={control}
@@ -30,7 +30,7 @@ export const LoginForm = () => {
                 {item.label}
                 {item.name === "password" && (
                   <div className="ml-auto">
-                    <LoginPopup />
+                    <SignInPopup />
                   </div>
                 )}
               </FormLabel>

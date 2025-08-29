@@ -8,7 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export const LoginPopup = () => {
+export const SignInPopup = () => {
   return (
     <Popover>
       <PopoverTrigger className="underline-offset-4 hover:underline text-sm cursor-pointer">

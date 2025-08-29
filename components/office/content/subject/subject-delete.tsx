@@ -33,7 +33,9 @@ export const SubjectDelete = ({ id, subject }: SubjectDeleteProps) => {
 
   const onDelete = async () => {
     try {
-      await axios.delete(Config.API_URL + routes.api.subject + id);
+      await axios.delete(Config.API_URL + routes.api.subject + id, {
+        withCredentials: true,
+      });
       toast.success("ลบวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);
@@ -52,7 +54,7 @@ export const SubjectDelete = ({ id, subject }: SubjectDeleteProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
+          <AlertDialogTitle className="break-all">
             คุณต้องการลบวิชา <span className="text-primary">{subject}</span>{" "}
             หรือไม่?
           </AlertDialogTitle>

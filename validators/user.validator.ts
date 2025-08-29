@@ -15,6 +15,8 @@ export const UserSchema = z.object({
     .regex(/^[a-zA-Z0-9]+$/, {
       message: "รหัสผ่านต้องเป็นตัวอักษร หรือตัวเลขเท่านั้น",
     }),
+  role: z.string().optional(),
+  fullName: z.string().optional(),
 });
 
 export const UpdateUserSchema = UserSchema.partial();

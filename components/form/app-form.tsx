@@ -13,6 +13,7 @@ import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
 import { SubjectType } from "@/validators/subject.validator";
 import { FormSchema, FormType } from "@/validators/form.validator";
+import { UserType } from "@/validators/user.validator";
 
 import { FormTools } from "@/components/form/form-tools";
 import { FormSelect } from "@/components/form/form-select";
@@ -29,9 +30,15 @@ interface AppFormProps {
   initImages: string;
   data: FormType;
   subjects: SubjectType[];
+  profile: UserType;
 }
 
-export default function AppForm({ initImages, data, subjects }: AppFormProps) {
+export default function AppForm({
+  initImages,
+  data,
+  subjects,
+  profile,
+}: AppFormProps) {
   const router = useRouter();
   const [image, setImage] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +97,7 @@ export default function AppForm({ initImages, data, subjects }: AppFormProps) {
               Create A Lesson Plan
             </h2>
           </div>
-          <FormTools />
+          <FormTools profile={profile} />
         </div>
 
         {/* Form  */}

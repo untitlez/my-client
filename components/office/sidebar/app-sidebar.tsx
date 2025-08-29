@@ -1,10 +1,12 @@
 "use client";
 
+import { UserType } from "@/validators/user.validator";
+
 import { SidebarAccount } from "./sidebar-account";
 import { SidebarMainMenu } from "./sidebar-main-menu";
 import { SidebarSubMenu } from "./sidebar-sub-menu";
 import { SidebarFooterMenu } from "./sidebar-footer-menu";
-import { SidebarLogout } from "./sidebar-logout";
+import { SidebarSignOut } from "./sidebar-sign-out";
 
 import {
   Sidebar,
@@ -17,15 +19,16 @@ import {
 
 interface AppSidebarProps {
   count: number;
+  profile: UserType;
 }
 
-export const AppSidebar = ({ count }: AppSidebarProps) => {
+export const AppSidebar = ({ count, profile }: AppSidebarProps) => {
   return (
     <Sidebar className="top-(--header-height) h-[calc(100svh-var(--header-height))]!">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarAccount />
+            <SidebarAccount profile={profile} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -35,7 +38,7 @@ export const AppSidebar = ({ count }: AppSidebarProps) => {
       </SidebarContent>
       <SidebarFooter>
         <SidebarFooterMenu />
-        <SidebarLogout />
+        <SidebarSignOut />
       </SidebarFooter>
     </Sidebar>
   );

@@ -64,7 +64,7 @@ export const ContentCard = ({ data }: ContentCardProps) => {
             {items.map((item, i) => (
               <TableRow key={i}>
                 <TableHead className="w-1/4">{item.label} :</TableHead>
-                <TableCell className="text-center">
+                <TableCell className="text-center max-w-xs break-words whitespace-normal">
                   {item.placeholder}
                 </TableCell>
               </TableRow>
@@ -82,9 +82,7 @@ export const ContentCard = ({ data }: ContentCardProps) => {
           กลับ
         </Button>
         <Button asChild type="button" className="btn">
-          <Link href={routes.pages.document + data._id} target="_blank">
-            บันทึกไฟล์ PDF
-          </Link>
+          <Link href={routes.pages.document + data._id}>บันทึกไฟล์ PDF</Link>
         </Button>
       </CardFooter>
     </Card>

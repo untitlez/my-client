@@ -1,5 +1,5 @@
 export const fieldItems = {
-  login: [
+  signIn: [
     {
       name: "username",
       type: "text",

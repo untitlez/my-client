@@ -27,7 +27,9 @@ export const ContentInfo = ({ title = "Label", items }: ContentModalProps) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title} :</AlertDialogTitle>
-          <AlertDialogDescription>{items}</AlertDialogDescription>
+          <AlertDialogDescription className="break-all">
+            {items}
+          </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel className="cursor-pointer">ปิด</AlertDialogCancel>

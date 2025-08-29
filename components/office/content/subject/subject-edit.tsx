@@ -51,7 +51,9 @@ export const SubjectEdit = ({ id, subject }: SubjectEditProps) => {
 
   const onEdit = async (data: SubjectType) => {
     try {
-      await axios.put(Config.API_URL + routes.api.subject + id, data);
+      await axios.put(Config.API_URL + routes.api.subject + id, data, {
+        withCredentials: true,
+      });
       toast.success("แก้ไขวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);
