@@ -2,7 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 
-import { fieldItems } from "@/lib/constant-login";
+import { fieldItems } from "@/lib/constant-auth";
 
 import { Input } from "@/components/ui/input";
 import {

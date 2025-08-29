@@ -35,10 +35,10 @@ export default function AppSignUp({ initImages }: AppSignUpProps) {
     },
   });
 
-  const onSubmit = async (formData: CreateUserType) => {
+  const onSignUp = async (formData: CreateUserType) => {
     try {
       await axios.post(Config.API_URL + routes.api.user, formData);
-      router.push(routes.pages.auth.login);
+      router.push(routes.pages.auth.signin);
       form.reset();
       toast.success("สมัครสมาชิกสำเร็จ !");
     } catch (error: unknown) {
@@ -95,7 +95,7 @@ export default function AppSignUp({ initImages }: AppSignUpProps) {
           <Form {...form}>
             <form
               className="space-y-6 w-full max-w-md my-auto"
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit(onSignUp)}
             >
               <div className="flex flex-col items-center gap-2 text-center">
                 <div className="flex items-center gap-3">

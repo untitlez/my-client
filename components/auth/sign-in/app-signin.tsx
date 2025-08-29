@@ -14,8 +14,8 @@ import { routes } from "@/lib/routes";
 import { UserSchema, UserType } from "@/validators/user.validator";
 
 import { ThemeToggle } from "@/components/theme-toggle";
-import { LoginForm } from "@/components/auth/login/login-form";
-import { LoginSubmit } from "@/components/auth/login/login-submit";
+import { SignInForm } from "@/components/auth/sign-in/signin-form";
+import { SignInSubmit } from "@/components/auth/sign-in/signin-submit";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
@@ -25,11 +25,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-interface AppLoginProps {
+interface AppSignInProps {
   initImages: string;
 }
 
-export default function AppLogin({ initImages }: AppLoginProps) {
+export default function AppSignIn({ initImages }: AppSignInProps) {
   const router = useRouter();
   const [image, setImage] = useState();
 
@@ -41,9 +41,11 @@ export default function AppLogin({ initImages }: AppLoginProps) {
     },
   });
 
-  const onSubmit = async (formData: UserType) => {
+  const onSignIn = async (formData: UserType) => {
     try {
-      await axios.post(Config.API_URL + routes.api.login, formData);
+      await axios.post(Config.API_URL + routes.api.auth.signin, formData, {
+        withCredentials: true,
+      });
       router.push(routes.pages.lessonPlan);
       form.reset();
       toast.success("เข้าสู่ระบบสำเร็จ !");
@@ -106,7 +108,7 @@ export default function AppLogin({ initImages }: AppLoginProps) {
           <Form {...form}>
             <form
               className="space-y-6 w-full max-w-md my-auto"
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit(onSignIn)}
             >
               <div className="flex flex-col items-center gap-2 text-center">
                 <div className="flex items-center gap-3">
@@ -118,8 +120,8 @@ export default function AppLogin({ initImages }: AppLoginProps) {
                 </p>
               </div>
 
-              <LoginForm />
-              <LoginSubmit />
+              <SignInForm />
+              <SignInSubmit />
             </form>
           </Form>
         </FormProvider>

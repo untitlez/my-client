@@ -10,17 +10,17 @@ import { Button } from "../../ui/button";
 import { Separator } from "../../ui/separator";
 import { Config } from "@/lib/config";
 
-export const LoginSubmit = () => {
+export const SignInSubmit = () => {
   const { formState, setValue } = useFormContext();
 
   const onFillMember = () => {
-    setValue("username", Config.LOGIN.MEMBER.USERNAME, { shouldDirty: true });
-    setValue("password", Config.LOGIN.MEMBER.PASSWORD, { shouldDirty: true });
+    setValue("username", Config.SIGNIN.MEMBER.USERNAME, { shouldDirty: true });
+    setValue("password", Config.SIGNIN.MEMBER.PASSWORD, { shouldDirty: true });
   };
 
   const onFillAdmin = () => {
-    setValue("username", Config.LOGIN.ADMIN.USERNAME, { shouldDirty: true });
-    setValue("password", Config.LOGIN.ADMIN.PASSWORD, { shouldDirty: true });
+    setValue("username", Config.SIGNIN.ADMIN.USERNAME, { shouldDirty: true });
+    setValue("password", Config.SIGNIN.ADMIN.PASSWORD, { shouldDirty: true });
   };
 
   return (
@@ -47,7 +47,7 @@ export const LoginSubmit = () => {
           className="cursor-pointer active:scale-95"
           disabled={formState.isSubmitting}
         >
-          <Link href={routes.pages.auth.signUp}>สมัครสมาชิกใหม่</Link>
+          <Link href={routes.pages.auth.signup}>สมัครสมาชิกใหม่</Link>
         </Button>
       </div>
       <div className="flex items-center gap-6 font-thin text-sm text-muted-foreground">

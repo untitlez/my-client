@@ -1,14 +1,19 @@
+import { fetchLatedLessonPlan, fetchProfile, fetchSubject } from "@/lib/fetch";
+
 import AppForm from "@/components/form/app-form";
-import { fetchLessonPlan, fetchSubject } from "@/lib/fetch";
 
 export default async function LessonPlanPage() {
   const initImages = "education";
-  const data = await fetchLessonPlan();
-  const latedData = data[data.length - 1];
-
+  const data = await fetchLatedLessonPlan();
   const subjects = await fetchSubject();
+  const profile = await fetchProfile();
 
   return (
-    <AppForm initImages={initImages} data={latedData} subjects={subjects} />
+    <AppForm
+      initImages={initImages}
+      data={data}
+      subjects={subjects}
+      profile={profile}
+    />
   );
 }

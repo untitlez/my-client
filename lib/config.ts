@@ -1,6 +1,6 @@
 export const Config = {
   API_URL: process.env.NEXT_PUBLIC_API_URL,
-  LOGIN: {
+  SIGNIN: {
     ADMIN: {
       USERNAME: process.env.NEXT_PUBLIC_ADMIN_USERNAME,
       PASSWORD: process.env.NEXT_PUBLIC_ADMIN_PASSWORD,

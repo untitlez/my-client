@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FileX, NotepadText } from "lucide-react";
 
 import { routes } from "@/lib/routes";
+import { fetchProfile } from "@/lib/fetch";
 import { FormType } from "@/validators/form.validator";
 
 import { ContentInfo } from "./content-info";
@@ -28,6 +30,16 @@ interface ContentTableProps {
 }
 
 export const ContentTable = ({ data }: ContentTableProps) => {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchProfile();
+      setProfile(data.role);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="overflow-hidden w-full rounded-lg border p-4 bg-card">
       <Table>
@@ -90,7 +102,7 @@ export const ContentTable = ({ data }: ContentTableProps) => {
                       <p className="font-semibold">ดูข้อมูล</p>
                     </TooltipContent>
                   </Tooltip>
-                  <ContentDelete id={item._id} />
+                  {profile === "ADMIN" && <ContentDelete id={item._id} />}
                 </TableCell>
               </TableRow>
             ))

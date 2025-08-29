@@ -30,7 +30,9 @@ export const ContentDelete = ({ id }: ContentDeleteProps) => {
 
   const onDelete = async () => {
     try {
-      await axios.delete(Config.API_URL + routes.api.lessonPlan + id);
+      await axios.delete(Config.API_URL + routes.api.lessonPlan + id, {
+        withCredentials: true,
+      });
       toast.success("ลบแผนการสอนสำเร็จ!");
       router.refresh();
     } catch {

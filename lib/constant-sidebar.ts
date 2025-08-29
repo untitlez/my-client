@@ -14,12 +14,6 @@ import {
 import { routes } from "@/lib/routes";
 
 export const sidebarItems = {
-  account: {
-    name: "example",
-    role: "member",
-    avatar: "/avatars/shadcn.jpg",
-    icon: User2,
-  },
   mainMenu: [
     {
       title: "ระดับชั้น",
