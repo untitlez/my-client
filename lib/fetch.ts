@@ -12,12 +12,13 @@ import { routes } from "./routes";
 export const fetchProfile = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
+  console.log("token", token);
 
   if (!token) return;
 
   const decoded = jwtDecode<{ _id: string }>(token);
   const id = decoded._id;
-
+  
   const res = await fetch(Config.API_URL + routes.api.user + id, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
