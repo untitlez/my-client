@@ -10,12 +10,9 @@ import { routes } from "./routes";
 // Private Endpoint
 //
 export const fetchProfile = async () => {
-  console.log("6.1");
   const cookieStore = await cookies();
-  console.log("6.2", cookieStore);
   const token = cookieStore.get("token")?.value;
-  console.log("token", token);
-  
+
   if (!token) return;
 
   const decoded = jwtDecode<{ _id: string }>(token);
