@@ -27,11 +27,10 @@ export const routes = {
       signup: "/api/signup/",
       signout: "/api/signout/",
     },
-    profile: "/api/user/profile",
     user: "/api/user/",
     images: "/api/images/",
     lessonPlan: "/api/lesson-plan/",
     subject: "/api/subject/",
-    guest:"/api/lesson-plan/guest",
+    guest: "/api/lesson-plan/guest",
   },
 };
