@@ -27,17 +27,21 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
 interface AppFormProps {
-  initImages: string;
-  data: FormType;
-  subjects: SubjectType[];
-  profile: UserType;
+  initImages?: string;
+  data?: FormType;
+  subjects?: SubjectType[];
+  profile?: UserType;
 }
 
 export default function AppForm({
-  initImages,
-  data,
-  subjects,
   profile,
+  initImages = "",
+  data = {
+    classLevel: "",
+    subject: "",
+    unitName: "",
+  },
+  subjects = [{ subject: "" }],
 }: AppFormProps) {
   const router = useRouter();
   const [image, setImage] = useState();
@@ -146,7 +150,7 @@ export default function AppForm({
 
       {/* Images  */}
       <div className="bg-muted relative hidden lg:block">
-        {image ? (
+        {/* {image ? (
           <div className="relative h-full w-full overflow-hidden">
             <Image
               src={image}
@@ -161,7 +165,7 @@ export default function AppForm({
             <Loader2 className="size-4 animate-spin" />
             Loading...
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 interface FormToolsProps {
-  profile: UserType;
+  profile?: UserType;
 }
 
 export const FormTools = ({ profile }: FormToolsProps) => {
