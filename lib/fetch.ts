@@ -20,6 +20,7 @@ export const fetchProfile = async () => {
 
   const res = await fetch(Config.API_URL + routes.api.user + id, {
     headers: { Authorization: `Bearer ${token}` },
+    cache: "no-store",
   });
   const data = await res.json();
   return data;
