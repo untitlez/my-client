@@ -10,15 +10,17 @@ import { routes } from "./routes";
 // Private Endpoint
 //
 export const fetchProfile = async () => {
+  console.log("6.1");
   const cookieStore = await cookies();
+  console.log("6.2", cookieStore);
   const token = cookieStore.get("token")?.value;
   console.log("token", token);
-
+  
   if (!token) return;
 
   const decoded = jwtDecode<{ _id: string }>(token);
   const id = decoded._id;
-  
+
   const res = await fetch(Config.API_URL + routes.api.user + id, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
