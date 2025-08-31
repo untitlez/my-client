@@ -11,6 +11,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { setCookie } from "@/lib/set-cookie";
 import { UserSchema, UserType } from "@/validators/user.validator";
 
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -43,9 +44,17 @@ export default function AppSignIn({ initImages }: AppSignInProps) {
 
   const onSignIn = async (formData: UserType) => {
     try {
-      await axios.post(Config.API_URL + routes.api.auth.signin, formData, {
-        withCredentials: true,
-      });
+      const { data } = await axios.post(
+        Config.API_URL + routes.api.auth.signin,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (!data) toast.error(data.error);
+
+      await setCookie(data.token);
       router.push(routes.pages.lessonPlan);
       form.reset();
       toast.success("เข้าสู่ระบบสำเร็จ !");
