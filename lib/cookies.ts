@@ -13,3 +13,14 @@ export const setCookie = async (token: string) => {
     path: "/",
   });
 };
+
+export const clearCookie = async () => {
+  const cookieStore = await cookies();
+  cookieStore.set("token", "", {
+    httpOnly: true,
+    secure: Config.NODE_ENV === "production",
+    sameSite: Config.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 0,
+    path: "/",
+  });
+};

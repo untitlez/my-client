@@ -3,10 +3,9 @@
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { toast } from "sonner";
-import axios from "axios";
 
-import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { clearCookie } from "@/lib/cookies";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,11 +25,7 @@ export const SidebarSignOut = () => {
 
   const onSignOut = async () => {
     try {
-      await axios.post(
-        Config.API_URL + routes.api.auth.signout,
-        {},
-        { withCredentials: true }
-      );
+      await clearCookie();
       router.push(routes.pages.home);
       toast.success("ออกจากระบบสำเร็จ !");
     } catch {

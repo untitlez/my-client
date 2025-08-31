@@ -11,7 +11,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
-import { setCookie } from "@/lib/set-cookie";
+import { setCookie } from "@/lib/cookies";
 import { UserSchema, UserType } from "@/validators/user.validator";
 
 import { ThemeToggle } from "@/components/theme-toggle";
