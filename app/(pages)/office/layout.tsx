@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 
 import { routes } from "@/lib/routes";
-import { fetchLessonPlan, fetchProfile } from "@/lib/fetch";
+import { fetchProfile } from "@/lib/fetch";
 
-import { AppSidebar } from "@/components/office/sidebar/app-sidebar";
+import AppSidebarPage from "./(components)/page";
 import { AppHeader } from "@/components/office/header/app-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
@@ -12,21 +12,17 @@ export default async function OfficeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const data = await fetchLessonPlan();
-  const count = data.length;
-
   const profile = await fetchProfile();
 
   if (!profile || profile.error) {
     redirect(routes.pages.home);
   }
-
   return (
     <div className="[--header-height:calc(--spacing(14))]">
       <SidebarProvider className="flex flex-col">
         <AppHeader />
         <div className="flex flex-1">
-          <AppSidebar count={count} profile={profile} />
+          <AppSidebarPage />
           <SidebarInset className="flex flex-1 flex-col gap-4 p-8 bg-neutral-200 dark:bg-background">
             {children}
           </SidebarInset>

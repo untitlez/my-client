@@ -15,7 +15,7 @@ import {
   UserType,
 } from "@/validators/user.validator";
 
-import { SidebarMenuBadge, SidebarMenuButton } from "@/components/ui/sidebar";
+import { SidebarMenuButton } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
