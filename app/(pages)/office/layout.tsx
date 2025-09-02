@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { routes } from "@/lib/routes";
 import { fetchProfile } from "@/lib/fetch";
 
-import AppSidebarPage from "./(components)/page";
 import { AppHeader } from "@/components/office/header/app-header";
+import AppSidebarViewer from "@/components/office/sidebar/app-sidebar-viewer";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default async function OfficeLayout({
@@ -22,7 +22,7 @@ export default async function OfficeLayout({
       <SidebarProvider className="flex flex-col">
         <AppHeader />
         <div className="flex flex-1">
-          <AppSidebarPage />
+          <AppSidebarViewer />
           <SidebarInset className="flex flex-1 flex-col gap-4 p-8 bg-neutral-200 dark:bg-background">
             {children}
           </SidebarInset>
