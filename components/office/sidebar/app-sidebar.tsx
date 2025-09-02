@@ -1,5 +1,4 @@
-"use client";
-
+import { fetchLessonPlan, fetchProfile } from "@/lib/fetch";
 import { UserType } from "@/validators/user.validator";
 
 import { SidebarAccount } from "./sidebar-account";
@@ -17,12 +16,11 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-interface AppSidebarProps {
-  count: number;
-  profile: UserType;
-}
+export const AppSidebar = async () => {
+  const data = await fetchLessonPlan();
+  const count = data.length;
 
-export const AppSidebar = ({ count, profile }: AppSidebarProps) => {
+  const profile = await fetchProfile();
   return (
     <Sidebar className="top-(--header-height) h-[calc(100svh-var(--header-height))]!">
       <SidebarHeader>

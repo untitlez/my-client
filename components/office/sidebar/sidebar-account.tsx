@@ -9,6 +9,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { useToken } from "@/hooks/use-token";
 import {
   UpdateUserSchema,
   UpdateUserType,
@@ -60,6 +61,7 @@ interface SidebarAccountProps {
 export const SidebarAccount = ({ profile }: SidebarAccountProps) => {
   const admin = profile.role === "ADMIN";
   const router = useRouter();
+  const token = useToken();
 
   const form = useForm<UpdateUserType>({
     resolver: zodResolver(UpdateUserSchema),
@@ -72,7 +74,7 @@ export const SidebarAccount = ({ profile }: SidebarAccountProps) => {
   const onEdit = async (newData: UpdateUserType) => {
     try {
       await axios.put(Config.API_URL + routes.api.user + profile._id, newData, {
-        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
       });
       router.refresh();
       toast.success("แก้ไขข้อมูลสำเร็จ !");
@@ -89,7 +91,9 @@ export const SidebarAccount = ({ profile }: SidebarAccountProps) => {
             <User2 className="size-5 text-foreground dark:text-secondary" />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate capitalize">คุณ {profile.fullName}</span>
+            <span className="truncate capitalize">
+              คุณ {profile.fullName ? profile.fullName : profile.username}
+            </span>
             <span className="truncate text-muted-foreground capitalize">
               {profile.role}
             </span>

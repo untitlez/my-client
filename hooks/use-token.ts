@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const useGetToken = () => {
+export const useToken = () => {
   const [isToken, setIsToken] = useState("");
 
   useEffect(() => {
