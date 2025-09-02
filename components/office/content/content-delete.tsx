@@ -7,7 +7,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
-import { authHeader } from "@/lib/auth-header";
+import { useAuthHeader } from "@/hooks/use-auth-header";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,7 +28,7 @@ interface ContentDeleteProps {
 
 export const ContentDelete = ({ id }: ContentDeleteProps) => {
   const router = useRouter();
-  const header = authHeader();
+  const header = useAuthHeader();
 
   const onDelete = async () => {
     try {

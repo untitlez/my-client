@@ -10,7 +10,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
-import { authHeader } from "@/lib/auth-header";
+import { useAuthHeader } from "@/hooks/use-auth-header";
 import { SubjectSchema, SubjectType } from "@/validators/subject.validator";
 
 import { Button } from "@/components/ui/button";
@@ -42,7 +42,7 @@ interface SubjectEditProps {
 export const SubjectEdit = ({ id, subject }: SubjectEditProps) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const header = authHeader();
+  const header = useAuthHeader();
 
   const form = useForm<SubjectType>({
     resolver: zodResolver(SubjectSchema),

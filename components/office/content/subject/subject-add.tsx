@@ -10,7 +10,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
-import { authHeader } from "@/lib/auth-header";
+import { useAuthHeader } from "@/hooks/use-auth-header";
 import { SubjectSchema, SubjectType } from "@/validators/subject.validator";
 
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ import {
 
 export const SubjectAdd = () => {
   const [open, setOpen] = useState(false);
-  const header = authHeader();
+  const header = useAuthHeader();
 
   const router = useRouter();
   const form = useForm<SubjectType>({

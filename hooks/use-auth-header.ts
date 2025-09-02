@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const authHeader = () => {
+export const useAuthHeader = () => {
   const [token, setToken] = useState({});
 
   useEffect(() => {

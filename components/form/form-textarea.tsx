@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Plus } from "lucide-react";
 
 import { fieldItems } from "@/lib/constant-form";
 
-import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import {
   FormControl,

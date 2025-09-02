@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
 import axios from "axios";
 
 import { Config } from "@/lib/config";

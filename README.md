@@ -57,7 +57,7 @@ http://localhost:3000
 
 ```plaintext
 my-client/
-├── app/                             
+├── app/
 │   ├── (pages)/
 │   │   ├── auth/
 │   │   │   ├── login/
@@ -96,7 +96,7 @@ my-client/
 │   ├── layout.tsx
 │   └── page.tsx
 │
-├── components/                    
+├── components/
 │   ├── auth/
 │   │   ├── login/
 │   │   │   ├── app-login.tsx

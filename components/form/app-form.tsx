@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 
@@ -27,21 +27,17 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
 interface AppFormProps {
-  initImages?: string;
-  data?: FormType;
-  subjects?: SubjectType[];
-  profile?: UserType;
+  initImages: string;
+  data: FormType;
+  subjects: SubjectType[];
+  profile: UserType;
 }
 
 export default function AppForm({
+  initImages,
+  data,
+  subjects,
   profile,
-  initImages = "",
-  data = {
-    classLevel: "",
-    subject: "",
-    unitName: "",
-  },
-  subjects = [{ subject: "" }],
 }: AppFormProps) {
   const router = useRouter();
   const [image, setImage] = useState();
@@ -150,7 +146,7 @@ export default function AppForm({
 
       {/* Images  */}
       <div className="bg-muted relative hidden lg:block">
-        {/* {image ? (
+        {image ? (
           <div className="relative h-full w-full overflow-hidden">
             <Image
               src={image}
@@ -165,7 +161,7 @@ export default function AppForm({
             <Loader2 className="size-4 animate-spin" />
             Loading...
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );
