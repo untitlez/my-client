@@ -54,7 +54,9 @@ export default function AppSignIn({ initImages }: AppSignInProps) {
 
       if (!data) toast.error(data.error);
 
+      localStorage.setItem("token", data.token);
       await setCookie(data.token);
+
       router.push(routes.pages.lessonPlan);
       form.reset();
       toast.success("เข้าสู่ระบบสำเร็จ !");
