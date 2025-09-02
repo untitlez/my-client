@@ -1,5 +1,4 @@
 import { fetchLessonPlan, fetchProfile } from "@/lib/fetch";
-import { UserType } from "@/validators/user.validator";
 
 import { SidebarAccount } from "./sidebar-account";
 import { SidebarMainMenu } from "./sidebar-main-menu";

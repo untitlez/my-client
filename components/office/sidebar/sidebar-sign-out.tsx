@@ -26,6 +26,7 @@ export const SidebarSignOut = () => {
   const onSignOut = async () => {
     try {
       await clearCookie();
+      localStorage.setItem("token", "");
       router.push(routes.pages.home);
       toast.success("ออกจากระบบสำเร็จ !");
     } catch {

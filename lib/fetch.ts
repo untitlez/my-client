@@ -9,6 +9,12 @@ import { routes } from "./routes";
 //
 // Private Endpoint
 //
+export const fetchToken = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  return token;
+};
+
 export const fetchProfile = async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;

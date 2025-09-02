@@ -9,7 +9,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
-import { useToken } from "@/hooks/use-token";
+import { authHeader } from "@/lib/auth-header";
 import {
   UpdateUserSchema,
   UpdateUserType,
@@ -61,7 +61,7 @@ interface SidebarAccountProps {
 export const SidebarAccount = ({ profile }: SidebarAccountProps) => {
   const admin = profile.role === "ADMIN";
   const router = useRouter();
-  const token = useToken();
+  const header = authHeader();
 
   const form = useForm<UpdateUserType>({
     resolver: zodResolver(UpdateUserSchema),
@@ -73,9 +73,11 @@ export const SidebarAccount = ({ profile }: SidebarAccountProps) => {
 
   const onEdit = async (newData: UpdateUserType) => {
     try {
-      await axios.put(Config.API_URL + routes.api.user + profile._id, newData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.put(
+        Config.API_URL + routes.api.user + profile._id,
+        newData,
+        header
+      );
       router.refresh();
       toast.success("แก้ไขข้อมูลสำเร็จ !");
     } catch {

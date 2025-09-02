@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { routes } from "@/lib/routes";
-import { fetchProfile } from "@/lib/fetch";
+import { fetchToken } from "@/lib/fetch";
 
 import { AppHeader } from "@/components/office/header/app-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
@@ -12,8 +12,8 @@ export default async function OfficeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const profile = await fetchProfile();
-  if (!profile || profile.error) redirect(routes.pages.home);
+  const token = await fetchToken();
+  if (!token) redirect(routes.pages.home);
 
   return (
     <div className="[--header-height:calc(--spacing(14))]">

@@ -10,6 +10,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { authHeader } from "@/lib/auth-header";
 import { SubjectSchema, SubjectType } from "@/validators/subject.validator";
 
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ import {
 
 export const SubjectAdd = () => {
   const [open, setOpen] = useState(false);
+  const header = authHeader();
 
   const router = useRouter();
   const form = useForm<SubjectType>({
@@ -46,9 +48,7 @@ export const SubjectAdd = () => {
 
   const onAdd = async (data: SubjectType) => {
     try {
-      await axios.post(Config.API_URL + routes.api.subject, data,{
-        withCredentials:true
-      });
+      await axios.post(Config.API_URL + routes.api.subject, data, header);
       toast.success("เพิ่มวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);

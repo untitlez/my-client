@@ -8,6 +8,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { authHeader } from "@/lib/auth-header";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -30,12 +31,11 @@ interface SubjectDeleteProps {
 export const SubjectDelete = ({ id, subject }: SubjectDeleteProps) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const header = authHeader();
 
   const onDelete = async () => {
     try {
-      await axios.delete(Config.API_URL + routes.api.subject + id, {
-        withCredentials: true,
-      });
+      await axios.delete(Config.API_URL + routes.api.subject + id, header);
       toast.success("ลบวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);

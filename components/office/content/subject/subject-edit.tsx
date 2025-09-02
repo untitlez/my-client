@@ -10,6 +10,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { authHeader } from "@/lib/auth-header";
 import { SubjectSchema, SubjectType } from "@/validators/subject.validator";
 
 import { Button } from "@/components/ui/button";
@@ -41,6 +42,7 @@ interface SubjectEditProps {
 export const SubjectEdit = ({ id, subject }: SubjectEditProps) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const header = authHeader();
 
   const form = useForm<SubjectType>({
     resolver: zodResolver(SubjectSchema),
@@ -51,9 +53,7 @@ export const SubjectEdit = ({ id, subject }: SubjectEditProps) => {
 
   const onEdit = async (data: SubjectType) => {
     try {
-      await axios.put(Config.API_URL + routes.api.subject + id, data, {
-        withCredentials: true,
-      });
+      await axios.put(Config.API_URL + routes.api.subject + id, data, header);
       toast.success("แก้ไขวิชาเรียนสำเร็จ!");
       router.refresh();
       setOpen(false);

@@ -7,6 +7,7 @@ import axios from "axios";
 
 import { Config } from "@/lib/config";
 import { routes } from "@/lib/routes";
+import { authHeader } from "@/lib/auth-header";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -27,12 +28,11 @@ interface ContentDeleteProps {
 
 export const ContentDelete = ({ id }: ContentDeleteProps) => {
   const router = useRouter();
+  const header = authHeader();
 
   const onDelete = async () => {
     try {
-      await axios.delete(Config.API_URL + routes.api.lessonPlan + id, {
-        withCredentials: true,
-      });
+      await axios.delete(Config.API_URL + routes.api.lessonPlan + id, header);
       toast.success("ลบแผนการสอนสำเร็จ!");
       router.refresh();
     } catch {

@@ -46,10 +46,7 @@ export default function AppSignIn({ initImages }: AppSignInProps) {
     try {
       const { data } = await axios.post(
         Config.API_URL + routes.api.auth.signin,
-        formData,
-        {
-          withCredentials: true,
-        }
+        formData
       );
 
       if (!data) toast.error(data.error);
