@@ -56,11 +56,11 @@ http://localhost:3000
 ## 📂 Project Structure
 
 ```plaintext
-my-client/
+client/
 ├── app/
 │   ├── (pages)/
 │   │   ├── auth/
-│   │   │   ├── login/
+│   │   │   ├── sign-in/
 │   │   │   │   └── page.tsx
 │   │   │   └── sign-up/
 │   │   │       └── page.tsx
@@ -98,16 +98,16 @@ my-client/
 │
 ├── components/
 │   ├── auth/
-│   │   ├── login/
-│   │   │   ├── app-login.tsx
-│   │   │   ├── login-form.tsx
-│   │   │   └── login-popup.tsx
+│   │   ├── sign-in/
+│   │   │   ├── app-signin.tsx
+│   │   │   ├── signin-form.tsx
+│   │   │   ├── signin-popup.tsx
+│   │   │   └── signin-submit.tsx
 │   │   └── sign-up/
 │   │       ├── app-sign-up.tsx
 │   │       ├── sign-up-form.tsx
 │   │       └── sign-up-submit.tsx
 │   ├── document/
-│   │   ├── document-pdf-view.tsx
 │   │   └── document-pdf.tsx
 │   ├── form/
 │   │   ├── app-form.tsx
@@ -120,15 +120,15 @@ my-client/
 │   │   └── form-tools.tsx
 │   ├── office/
 │   │   ├── content/
+│   │   │   ├── subject/
+│   │   │   │   ├── subject-add.tsx
+│   │   │   │   ├── subject-delete.tsx
+│   │   │   │   └── subject-edit.tsx
 │   │   │   ├── content-card.tsx
 │   │   │   ├── content-delete.tsx
 │   │   │   ├── content-info.tsx
 │   │   │   ├── content-stat.tsx
-│   │   │   ├── content-table.tsx
-│   │   │   └── subject/
-│   │   │       ├── subject-add.tsx
-│   │   │       ├── subject-delete.tsx
-│   │   │       └── subject-edit.tsx
+│   │   │   └── content-table.tsx
 │   │   ├── header/
 │   │   │   ├── app-header.tsx
 │   │   │   └── header-info.tsx
@@ -136,8 +136,8 @@ my-client/
 │   │       ├── app-sidebar.tsx
 │   │       ├── sidebar-account.tsx
 │   │       ├── sidebar-footer-menu.tsx
-│   │       ├── sidebar-logout.tsx
-│   │       └── sidebar-main-menu.tsx
+│   │       ├── sidebar-main-menu.tsx
+│   │       ├── sidebar-sign-out.tsx
 │   │       └── sidebar-sub-menu.tsx
 │   ├── ui/
 │   ├── home.tsx
@@ -145,14 +145,16 @@ my-client/
 │   └── theme-toggle.tsx
 │
 ├── hooks/
+│   ├── use-auth-header.ts
 │   └── use-mobile.ts
 │
 ├── lib/
 │   ├── config.ts
+│   ├── constant-auth.ts
 │   ├── constant-form.ts
-│   ├── constant-login.ts
 │   ├── constant-path-name.ts
 │   ├── constant-sidebar.ts
+│   ├── cookies.ts
 │   ├── fetch.ts
 │   ├── routes.ts
 │   └── utils.ts
